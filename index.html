@@ -1,0 +1,895 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="이건호 — 부동산 개발·개발금융 실무 포트폴리오. PF·정비사업·도시개발·NPL·AI 오케스트레이션.">
+<title>이건호 · Development Orbit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --void:#080B14;
+    --void-deep:#05070D;
+    --ink:#0E1422;
+    --ink-raised:#141B2C;
+    --ember:#E8944A;
+    --ember-dim:#8A5528;
+    --solar:#FFC46B;
+    --mist:#8A94A6;
+    --mist-dim:#5A6376;
+    --paper:#F2F4F8;
+    --line:rgba(232,148,74,.22);
+    --line-soft:rgba(138,148,166,.16);
+
+    --f-display:"Syncopate","Noto Sans KR",system-ui,sans-serif;
+    --f-body:"Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --f-mono:"IBM Plex Mono",ui-monospace,"Courier New",monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;}
+  body{
+    background:var(--void);
+    color:var(--paper);
+    font-family:var(--f-body);
+    font-weight:300;
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ── Stage ─────────────────────────────────────── */
+  #stage{position:fixed;inset:0;display:block;touch-action:none;cursor:grab;}
+  #stage.dragging{cursor:grabbing;}
+
+  .vignette{
+    position:fixed;inset:0;pointer-events:none;z-index:1;
+    background:radial-gradient(ellipse 120% 90% at 50% 50%,transparent 35%,rgba(5,7,13,.55) 78%,rgba(5,7,13,.92) 100%);
+  }
+
+  /* ── Masthead ──────────────────────────────────── */
+  .masthead{
+    position:fixed;top:0;left:0;z-index:5;
+    padding:clamp(20px,3.2vw,42px);
+    pointer-events:none;
+    max-width:min(92vw,620px);
+  }
+  .eyebrow{
+    font-family:var(--f-mono);
+    font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--ember);
+    margin:0 0 clamp(12px,1.6vw,20px);
+  }
+  .wordmark{
+    font-family:var(--f-display);
+    font-weight:700;
+    font-size:clamp(26px,5.4vw,58px);
+    letter-spacing:.13em;
+    line-height:1.04;
+    margin:0;
+    color:var(--paper);
+    text-wrap:balance;
+  }
+  .hangul{
+    font-family:var(--f-body);
+    font-weight:500;
+    font-size:clamp(15px,2vw,20px);
+    letter-spacing:.42em;
+    color:var(--mist);
+    margin:clamp(10px,1.4vw,16px) 0 0;
+  }
+  .role{
+    font-family:var(--f-body);
+    font-weight:300;
+    font-size:clamp(12.5px,1.5vw,15px);
+    line-height:1.75;
+    color:var(--mist);
+    margin:clamp(14px,2vw,22px) 0 0;
+    max-width:44ch;
+  }
+  .role strong{color:var(--paper);font-weight:500;}
+
+  /* ── Metric strip ──────────────────────────────── */
+  .metrics{
+    position:fixed;left:0;bottom:0;z-index:5;
+    padding:clamp(18px,2.6vw,34px);
+    display:flex;gap:clamp(20px,3.4vw,48px);
+    flex-wrap:wrap;pointer-events:none;
+  }
+  .metric{display:flex;flex-direction:column;gap:5px;}
+  .metric b{
+    font-family:var(--f-mono);font-weight:500;
+    font-size:clamp(19px,2.7vw,29px);
+    color:var(--solar);
+    font-variant-numeric:tabular-nums;
+    line-height:1;
+  }
+  .metric span{
+    font-family:var(--f-mono);
+    font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--mist-dim);
+  }
+
+  /* ── Hint ──────────────────────────────────────── */
+  .hint{
+    position:fixed;right:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,32px);
+    z-index:5;pointer-events:none;text-align:right;
+    font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--mist-dim);line-height:2;
+  }
+  .hint b{color:var(--ember);font-weight:400;}
+
+  /* ── Nav chips (keyboard path) ─────────────────── */
+  .chips{
+    position:fixed;top:50%;right:clamp(14px,2vw,26px);
+    transform:translateY(-50%);
+    z-index:6;display:flex;flex-direction:column;gap:7px;
+  }
+  .chip{
+    appearance:none;border:1px solid var(--line-soft);
+    background:rgba(14,20,34,.6);
+    backdrop-filter:blur(9px);
+    color:var(--mist);
+    font-family:var(--f-mono);font-size:10px;letter-spacing:.13em;
+    text-transform:uppercase;
+    padding:8px 13px;border-radius:2px;cursor:pointer;
+    transition:border-color .22s,color .22s,background .22s;
+    text-align:right;white-space:nowrap;
+  }
+  .chip:hover,.chip.on{border-color:var(--ember);color:var(--solar);background:rgba(232,148,74,.09);}
+  .chip:focus-visible{outline:2px solid var(--solar);outline-offset:2px;}
+
+  /* ── Detail panel ──────────────────────────────── */
+  .panel{
+    position:fixed;top:0;right:0;height:100%;
+    width:min(560px,42vw);
+    background:linear-gradient(180deg,#111828 0%,#0A0E1A 100%);
+    border-left:1px solid var(--line);
+    z-index:20;
+    transform:translateX(101%);
+    transition:transform .52s cubic-bezier(.22,1,.36,1);
+    display:flex;flex-direction:column;
+    box-shadow:-30px 0 70px rgba(0,0,0,.5);
+  }
+  .panel.open{transform:translateX(0);}
+
+  .panel-head{
+    padding:clamp(24px,3vw,38px) clamp(22px,2.6vw,34px) clamp(16px,2vw,22px);
+    border-bottom:1px solid var(--line-soft);
+    display:flex;justify-content:space-between;align-items:flex-start;gap:18px;
+    flex-shrink:0;
+  }
+  .panel-idx{
+    font-family:var(--f-mono);font-size:10.5px;letter-spacing:.26em;
+    color:var(--ember);margin:0 0 11px;text-transform:uppercase;
+  }
+  .panel-title{
+    font-family:var(--f-body);font-weight:700;
+    font-size:clamp(20px,2.5vw,27px);
+    letter-spacing:-.01em;line-height:1.34;margin:0;color:var(--paper);
+    text-wrap:balance;word-break:keep-all;
+  }
+  .panel-sub{
+    font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;
+    color:var(--mist);margin:10px 0 0;
+  }
+  .close{
+    appearance:none;background:none;border:1px solid var(--line-soft);
+    color:var(--mist);width:34px;height:34px;border-radius:2px;
+    cursor:pointer;flex-shrink:0;font-size:16px;line-height:1;
+    transition:border-color .2s,color .2s;
+  }
+  .close:hover{border-color:var(--ember);color:var(--solar);}
+  .close:focus-visible{outline:2px solid var(--solar);outline-offset:2px;}
+
+  .panel-body{
+    padding:clamp(20px,2.6vw,30px) clamp(22px,2.6vw,34px) clamp(40px,5vw,60px);
+    overflow-y:auto;flex:1;
+    scrollbar-width:thin;scrollbar-color:var(--ember-dim) transparent;
+  }
+  .panel-body::-webkit-scrollbar{width:5px;}
+  .panel-body::-webkit-scrollbar-thumb{background:var(--ember-dim);}
+
+  .lede{
+    font-size:14px;line-height:1.88;color:var(--paper);
+    margin:0 0 26px;padding-bottom:22px;
+    border-bottom:1px solid var(--line-soft);
+    font-weight:300;word-break:keep-all;
+  }
+
+  .grp{margin:0 0 26px;}
+  .grp h4{
+    font-family:var(--f-body);font-size:11.5px;letter-spacing:.08em;
+    color:var(--ember);margin:0 0 13px;font-weight:500;
+    word-break:keep-all;
+  }
+  .grp ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .grp li{
+    font-size:13.5px;line-height:1.78;color:var(--mist);
+    padding-left:15px;position:relative;font-weight:300;
+    word-break:keep-all;
+  }
+  .grp li::before{
+    content:"";position:absolute;left:0;top:.62em;
+    width:5px;height:1px;background:var(--ember);
+  }
+  .grp li b{color:var(--paper);font-weight:500;}
+
+  .tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{
+    font-family:var(--f-body);font-size:11px;letter-spacing:.01em;
+    color:var(--mist);border:1px solid var(--line-soft);
+    padding:5px 10px;border-radius:2px;background:rgba(138,148,166,.05);
+    word-break:keep-all;
+  }
+  .tag.hot{color:var(--solar);border-color:var(--line);background:rgba(232,148,74,.08);}
+
+  .facts{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));
+    gap:1px;background:var(--line-soft);
+    border:1px solid var(--line-soft);margin:0 0 26px;
+  }
+  .fact{background:var(--ink);padding:13px 14px;}
+  .fact b{
+    display:block;font-family:var(--f-mono);font-weight:500;
+    font-size:17px;color:var(--solar);font-variant-numeric:tabular-nums;
+    line-height:1.2;
+  }
+  .fact span{
+    display:block;font-family:var(--f-body);font-size:10px;
+    letter-spacing:.02em;color:var(--mist-dim);
+    margin-top:6px;word-break:keep-all;
+  }
+
+  .link{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;
+    color:var(--solar);text-decoration:none;
+    border:1px solid var(--line);padding:11px 16px;border-radius:2px;
+    transition:background .2s,border-color .2s;
+    background:rgba(232,148,74,.06);
+    word-break:break-all;
+  }
+  .link:hover{background:rgba(232,148,74,.15);border-color:var(--ember);}
+  .link:focus-visible{outline:2px solid var(--solar);outline-offset:2px;}
+
+  /* ── Responsive ────────────────────────────────── */
+  @media (max-width:860px){
+    .panel{width:100%;height:76%;top:auto;bottom:0;border-left:none;border-top:1px solid var(--line);transform:translateY(101%);}
+    .panel.open{transform:translateY(0);}
+    .chips{
+      top:auto;bottom:clamp(80px,14vw,110px);right:0;left:0;
+      transform:none;flex-direction:row;overflow-x:auto;
+      padding:0 14px;gap:6px;justify-content:flex-start;
+      scrollbar-width:none;
+    }
+    .chips::-webkit-scrollbar{display:none;}
+    .chip{flex-shrink:0;}
+    .metrics{gap:18px;padding:14px;}
+    .hint{display:none;}
+    .masthead{max-width:100%;padding:18px 16px;}
+    .role{display:none;}
+  }
+  @media (max-width:420px){
+    .metric b{font-size:17px;}
+    .hangul{letter-spacing:.3em;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .panel{transition:none;}
+  }
+
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+</style>
+
+<canvas id="stage" aria-label="경력 행성계 인터랙티브 시각화"></canvas>
+<div class="vignette"></div>
+
+<header class="masthead">
+  <p class="eyebrow">Real Estate Development · Development Finance</p>
+  <h1 class="wordmark">LEE<br>GEONHO</h1>
+  <p class="hangul">이 건 호</p>
+  <p class="role">
+    개발사업의 <strong>자금조달부터 인허가·계약·분쟁 대응·채권관리</strong>,
+    준공 이후 미분양 리스크까지 사업 전 주기를 실무로 통과한 개발·개발금융 담당자.
+  </p>
+</header>
+
+<div class="metrics">
+  <div class="metric"><b>7</b><span>Domains</span></div>
+  <div class="metric"><b>15</b><span>Skills</span></div>
+  <div class="metric"><b>6</b><span>Certificates</span></div>
+  <div class="metric"><b>4</b><span>Asset Classes</span></div>
+</div>
+
+<p class="hint">Drag <b>·</b> Orbit<br>Click Planet <b>·</b> Detail<br>Scroll <b>·</b> Zoom</p>
+
+<nav class="chips" id="chips" aria-label="영역 바로가기"></nav>
+
+<aside class="panel" id="panel" role="dialog" aria-modal="false" aria-labelledby="pt">
+  <div class="panel-head">
+    <div>
+      <p class="panel-idx" id="pi"></p>
+      <h2 class="panel-title" id="pt"></h2>
+      <p class="panel-sub" id="ps"></p>
+    </div>
+    <button class="close" id="pc" aria-label="닫기">✕</button>
+  </div>
+  <div class="panel-body" id="pb"></div>
+</aside>
+
+<p class="sr">이건호 부동산 개발 포트폴리오. 각 행성은 전문 영역을 나타내며 클릭하면 상세 내용이 열립니다.</p>
+
+<script>
+(function(){
+"use strict";
+
+/* ═══════════════════════════════════════════════════
+   DATA — 리멤버 프로필 전량
+   ═══════════════════════════════════════════════════ */
+const PLANETS = [
+  {
+    key:"finance", label:"Development Finance",
+    title:"개발금융 · PF", sub:"Bridge Loan / Project Financing / 담보대출",
+    r:142, size:15.5, inc:0.10, node:0.4, phase:0.2, speed:0.00021, hue:"#E8944A",
+    lede:"브릿지론과 본PF의 기표 전 여신승인신청부터 인출선행조건 관리, 대주단 제출자료 작성까지 개발금융의 백오피스 전 과정을 담당했습니다.",
+    facts:[["3,200","만원 연봉"],["4","자산 유형"],["2","금융 구조"]],
+    groups:[
+      {h:"Bridge · Project Financing",items:[
+        "브릿지론 및 본PF의 <b>기표 전 여신승인신청</b>, 대출 인출선행조건 관리",
+        "대주단 및 금융기관 제출자료 작성, <b>자금조달현황 관리</b>",
+        "금융지주 계열 증권사 주관 <b>간접투자 부동산펀드(투자형)</b>와 직접투자 론 구조의 백오피스 업무"
+      ]},
+      {h:"미분양담보대출",items:[
+        "<b>생활형숙박시설 · 타운하우스 · 대형 복합상가</b>의 미분양담보대출 실행",
+        "만기 연장 계약 체결 및 관련 증빙서류 준비"
+      ]},
+      {h:"물류센터 개발사업",items:[
+        "브릿지론 검토, 사업수지 및 <b>Valuation · Rent Roll</b> 분석",
+        "시공사 대여금을 활용한 <b>추가 에쿼티 확보</b>와 토지매입, 여신승인신청 수행",
+        "매입확약·자기자본 조달·책임준공 조건이 실제 기표 여부에 미치는 영향 파악"
+      ]}
+    ],
+    tags:["프로젝트 파이낸싱(PF)","담보대출","Valuation","부동산금융","부동산신탁"]
+  },
+  {
+    key:"renewal", label:"Urban Renewal",
+    title:"정비사업 · 재개발/재건축", sub:"비례율 · 조합원 부담금 · 관리처분",
+    r:178, size:14, inc:-0.16, node:1.5, phase:2.1, speed:0.00016, hue:"#F0A860",
+    lede:"비례율과 조합원 부담금을 엑셀 데이터로 체계화해 재개발 사업수지를 조정하고, 조합·지자체 협의와 심의 대응까지 수행했습니다.",
+    facts:[["1","금융권 선정"],["2","사업 유형"],["100%","데이터화"]],
+    groups:[
+      {h:"사업성 분석",items:[
+        "재건축사업 인수와 <b>확정지분제 공동시행 구조</b> 검토",
+        "조합규약, 사업수익 및 <b>EXIT 구조</b> 분석",
+        "재정비촉진지구·재개발구역 관리 — 사업비·용역비·조합원 부담금·<b>추정 비례율</b> 산출",
+        "관리처분계획 수립 시점까지의 사업비와 용역비 추계",
+        "비례율과 부담금을 <b>엑셀 데이터로 체계화</b>하여 사업수지 조정의 정량적 근거 마련"
+      ]},
+      {h:"자금조달 · 인허가",items:[
+        "이주비 자금조달을 위한 <b>1금융권 은행 선정</b> 업무 지원",
+        "주민설명회 및 현장설명회 지원",
+        "<b>건축·경관심의</b> 지적사항 조치, 재심의 접수",
+        "지방자치단체 <b>재정비촉진계획 변경</b> 접수"
+      ]},
+      {h:"조합 업무",items:[
+        "조합 대리사무 및 조합원 관리, 조합장 업무 소통",
+        "시공자 선정 및 분쟁 대응"
+      ]}
+    ],
+    tags:["재개발","정비사업","비례율","조합 대리사무","부동산개발"]
+  },
+  {
+    key:"urban", label:"Urban Development",
+    title:"도시개발사업", sub:"환지 · 체비지 · PFV",
+    r:212, size:13, inc:0.22, node:2.7, phase:4.0, speed:0.00012, hue:"#D8823C",
+    lede:"구역지정 제안 접수부터 환지계획, 체비지 매각을 통한 사업비 충원과 PFV 설립까지 도시개발사업의 구조를 직접 설계했습니다.",
+    facts:[["2","아파트 단지"],["1","제안서 단독"],["PFV","설립 구조"]],
+    groups:[
+      {h:"구역 지정 · 기본 검토",items:[
+        "주민 <b>구역지정제안 접수</b> 및 구역 내 지구단위계획 지정에 따른 토지가치 검토",
+        "<b>수용시행방식</b> 아파트 1단지·2단지 기본설계 및 사업수지 검토"
+      ]},
+      {h:"업무대행사 제안 (단독 작성)",items:[
+        "조합 업무대행사 모집공고에 <b>사업참여 제안서를 단독 작성·제출</b>",
+        "사업 참여 구조도, 펀드 잔고증명, 금융기관 <b>금융주선 의향서</b>, 1군 시공사 참여 확인까지 패키지 구성"
+      ]},
+      {h:"환지 · 사업비 구조 설계",items:[
+        "환지면적 종후 평가를 통한 <b>집단환지 지정</b>",
+        "특별계획구역 해제 및 일반상업지 공동개발 추진",
+        "<b>체비지 확보·매각</b>을 통한 사업비 충원",
+        "<b>PFV 설립</b> 후 체비지를 활용한 공동주택(APT) 사업 구조 설계"
+      ]}
+    ],
+    tags:["도시개발","개발사업","부동산시행","부동산컨설팅"]
+  },
+  {
+    key:"npl", label:"Distressed Debt",
+    title:"NPL · 채권 및 분쟁관리", sub:"메자닌금융 · 소송 · 우발채무",
+    r:246, size:12.5, inc:-0.09, node:3.9, phase:1.1, speed:0.000095, hue:"#C4703A",
+    lede:"메자닌금융과 채권양수도계약으로 부실채권을 관리하고, 책임준공 미이행·유치권·명도소송 등 개발사업의 법적 분쟁 전선을 직접 담당했습니다.",
+    facts:[["1","현장 단독 담당"],["다수","내용증명·공문"],["0","손실 방어"]],
+    groups:[
+      {h:"NPL · 유동화",items:[
+        "사업지 관련 <b>메자닌금융</b> 업무",
+        "연결법인 대여금 관련 <b>CB 발행을 통한 채권양수도계약</b>, 채권·리스크 관리",
+        "유동화 방식의 자금 융통 구조 이해"
+      ]},
+      {h:"시공 · 준공 분쟁",items:[
+        "시공사 <b>책임준공 미이행</b>에 따른 타 시공사 <b>도급승계계약</b>",
+        "준공 전 하자보수 관리, <b>하자이행보증증서</b> 발행 관련 분쟁 대응"
+      ]},
+      {h:"소송 및 채권관리",items:[
+        "<b>유치권·명도소송</b>, 기분양 호실 <b>부당이득반환소송</b>",
+        "이해관계자 간 소송 대응 및 다수의 <b>내용증명·공문</b> 작성",
+        "우발채무 채권관리, 자금관리",
+        "기존 수분양자(계약금·중도금 납입)와 <b>신탁사 간 갈등 조정</b>"
+      ]},
+      {h:"현장 대응 성과",items:[
+        "NPL 현장 단독 담당 중 하도급업체 <b>무단집회 발생</b> 시, 관할 경찰서에 사전 신고 여부를 확인하고 협조를 요청하여 집회를 차단 — <b>회사의 금전적 손실 방어</b>"
+      ]}
+    ],
+    tags:["NPL","채권관리","리스크관리","부동산경매"]
+  },
+  {
+    key:"ai", label:"AI Orchestration",
+    title:"AI 오케스트레이션 · 법령 온톨로지", sub:"3-Vendor CLI · Knowledge Graph",
+    r:278, size:14.5, inc:0.30, node:5.1, phase:5.4, speed:0.00007, hue:"#FFC46B",
+    lede:"주요 AI CLI 3사를 하나의 파이프라인으로 결합한 멀티 에이전트 오케스트레이션 환경을 직접 구축해 운영하고, 이를 법령 온톨로지 구축에 적용하고 있습니다.",
+    facts:[["3","Vendor CLI"],["3","적용 법령"],["4","계획 에이전트"]],
+    groups:[
+      {h:"현재 — 오케스트레이션 환경 구축",items:[
+        "<b>Claude Code · Codex · Antigravity</b> 3사 CLI를 하나의 파이프라인으로 결합",
+        "설계·시공·검수 역할을 각 모델에 분담시키는 <b>멀티 에이전트 구조</b> 설계",
+        "역할별 실행 규칙과 품질 검증 절차를 <b>코드로 고정</b>하여 반복 업무를 에이전트가 처리"
+      ]},
+      {h:"현재 — 법령 온톨로지 적용",items:[
+        "<b>국토의 계획 및 이용에 관한 법률 · 도시 및 주거환경정비법 · 건축법</b>의 조문·요건·절차·예외 규정을 지식 그래프로 구조화",
+        "<b>법률 검토와 리스크 검수</b>에 직접 활용",
+        "조문 간 상호 참조와 개정 이력을 함께 추적하여 <b>검토 누락 감소</b>, 판단 근거 즉시 제시"
+      ]},
+      {h:"입사 후 실행 계획",items:[
+        "<b>권리분석 에이전트</b> — 등기부등본·건축물대장·토지이용계획을 자동 조회해 권리관계와 규제사항을 한 장의 요약 리포트로 산출",
+        "<b>사업수지 시뮬레이터</b> — 분양가·공사비·금융비용·사업기간을 변수로 보수·기준·낙관 시나리오별 민감도와 비례율·조합원 부담금 영향 자동 산출",
+        "<b>문서 자동화 도구</b> — 여신승인신청 자료와 인출선행조건 체크리스트, 내용증명·공문 초안을 표준 서식으로 생성",
+        "<b>리포팅 에이전트</b> — 자금조달현황·인허가 진행상황·분양 실적을 취합해 대주단·신탁사 제출용 정기보고서 자동 갱신",
+        "인허가 절차·계약 구조·대주단 요구조건·분쟁 선례를 <b>온톨로지로 체계화</b>하여 개인 경험을 조직이 재사용할 자산으로 전환"
+      ]}
+    ],
+    link:{href:"https://github.com/lgh5446/oma-personal",text:"github.com/lgh5446/oma-personal"},
+    tags:["AI/인공지능","온톨로지","멀티 에이전트","지식 그래프"]
+  },
+  {
+    key:"career", label:"Career",
+    title:"경력 · 주식회사 한연개발", sub:"개발사업부 시행사업팀 · 사원/팀원",
+    r:108, size:11.5, inc:-0.26, node:0.9, phase:3.3, speed:0.00034, hue:"#F2A868",
+    lede:"개발사업부 시행사업팀에서 부동산 개발사업의 시행·PM 및 자금관리를 담당했습니다.",
+    facts:[["1년 7개월","재직 기간"],["2021.12","입사"],["2023.06","퇴사"]],
+    groups:[
+      {h:"담당 업무",items:[
+        "부동산 상품별 개발사업 <b>PM·시행 및 자금관리</b> — 대형 근린생활시설, 타운하우스, 생활형 숙박시설, 미분양 아파트",
+        "도시개발사업 구역지정 제안 접수 및 체비지 개발 업무대행사 사업참여 제안서 작성",
+        "재개발사업 시공자 선정과 분쟁 대응, 조합장 업무 소통, 조합 대리사무 및 조합원 관리"
+      ]},
+      {h:"핵심 성과",items:[
+        "미분양담보대출 실행 및 만기 연장을 통해 <b>사업 유동성 확보</b>",
+        "비례율과 조합원 부담금을 데이터화하여 <b>재개발 사업수지 조정의 정량적 근거</b> 마련",
+        "도시개발사업 업무대행사 제안서를 <b>단독 작성</b>하여 구조도·금융주선 의향서·1군 시공사 참여 확인까지 패키지 구성",
+        "NPL 현장 무단집회 사전 차단으로 <b>회사의 금전적 손실 방어</b>"
+      ]},
+      {h:"근무 조건",items:[
+        "근무지 서울 · 연봉 3,200만원 · 퇴사사유 경영악화"
+      ]}
+    ],
+    tags:["부동산개발","부동산시행","개발사업","PM"]
+  },
+  {
+    key:"credentials", label:"Credentials",
+    title:"학력 · 자격 · 교육", sub:"대구대학교 부동산학과 · 자격증 6건",
+    r:308, size:12, inc:-0.34, node:6.0, phase:0.7, speed:0.00005, hue:"#B9683C",
+    lede:"부동산학 전공에서 민법·부동산학원론·경제학·부동산공법·부동산공시법을 체계적으로 이수하고, 개발·금융 분야 자격을 지속적으로 취득해 왔습니다.",
+    facts:[["3.4","학점 / 4.5"],["6","자격증"],["3","교육 이수"]],
+    groups:[
+      {h:"학력 — 대구대학교 부동산학과 (학사)",items:[
+        "2013.03 입학 ~ 2020.08 졸업 · 주간 · <b>학점 3.4 / 4.5</b>",
+        "<b>민법</b> — 물권변동과 담보물권, 채권관계 및 계약법리를 학습하여 소유권·저당권·유치권·임차권 등 권리관계 해석 기준 확립",
+        "<b>부동산공시법</b> — 등기부와 지적공부의 편제 원리 및 공시의 효력을 익혀 등기사항전부증명서와 각종 대장을 대조하는 권리분석 실무 역량 확보",
+        "<b>부동산공법</b> — 국토의 계획 및 이용에 관한 법률을 중심으로 용도지역·지구단위계획·개발행위허가 체계 학습",
+        "<b>경제학</b> — 수요·공급과 시장 균형, 금리와 통화정책이 부동산 시장과 개발사업 자금조달에 미치는 영향 분석",
+        "<b>부동산학원론</b> — 화폐의 시간가치와 자본환원, 부동산 금융 및 투자 의사결정 이론, 감정평가 3방식"
+      ]},
+      {h:"학술 활동",items:[
+        "가격수준조사 DB와 실거래 자료 등 빅데이터 기반 부동산 가격정보를 <b>이산확률분포·연속확률분포 및 대표본·소표본 기법</b>으로 분석",
+        "대구 도시기본계획과 수성구 장기발전계획 비교 분석 리포트 작성 — 등기부조사 권리분석, 국토계획법·도시정비·도시개발·건축·주택법 적용, 개발 잠재력 및 수요·공급 분석",
+        "현장 임장활동을 통한 입지·상권 분석"
+      ]},
+      {h:"자격증",items:[
+        "<b>건축기사</b> — 한국산업인력공단 · 2025.06 최종합격",
+        "<b>도시계획기사</b> — 한국산업인력공단 · 2025.02 필기합격",
+        "<b>투자자산운용사</b> — 금융투자협회 · 2024.06 최종합격",
+        "정보기술자격(ITQ) 엑셀 A등급 · 파워포인트 A등급 — KPC · 2024.01",
+        "정보기술자격(ITQ) MS워드 B등급 — KPC · 2026.01"
+      ]},
+      {h:"교육 이수",items:[
+        "<b>한국부동산원 부동산 서비스산업 창업실무교육</b> 수료 — 투자유치 전략, 노무·세무·회계, 사업계획서 기반 투자 피칭",
+        "<b>마을관리협동조합 설립 교육</b> 이수 — 비즈니스모델 캔버스, 정관 및 신청서식, 사업계획서·수입지출예산서 작성",
+        "<b>한국부동산원 특강</b> 이수 — 보상대상 토지 기본조사, 가격수준 조사, 녹색건축 DB화 실무"
+      ]}
+    ],
+    tags:["건축기사","도시계획기사","투자자산운용사","부동산학 학사"]
+  }
+];
+
+const CORE = {
+  title:"이건호 · Real Estate Developer",
+  sub:"부동산 개발·분양·경매 / 부동산금융",
+  lede:"부동산 개발사업의 자금조달부터 인허가·계약·분쟁 대응·채권관리, 준공 이후 미분양 리스크까지 사업 전 주기를 실무로 경험한 개발·개발금융 담당자입니다. 대형 근린생활시설, 타운하우스, 생활형 숙박시설, 미분양 아파트 등 다양한 상품의 PM·시행 및 자금관리를 수행했으며, 코스피 상장사의 관리체계 안에서 기업금융과 PF 실무를 담당했습니다.",
+  facts:[["1994","출생"],["7","전문 영역"],["15","보유 스킬"]],
+  groups:[
+    {h:"업무 방식",items:[
+      "도시정비·도시개발사업은 사업성 분석, 조합 및 공공기관 협의, 인허가, 금융조달, 공사비 관리와 준공 리스크까지 <b>유기적으로 관리해야 하는 복합사업</b>입니다.",
+      "신규 사업장에서는 정비계획과 권리관계, 사업시행 약정, 도급계약, 공사비·사업비 조달구조, 인허가 일정과 착공 선행조건을 <b>단계별로 정리</b>합니다.",
+      "사업수지와 <b>CASH FLOW</b>를 기준으로 일반분양가·공사비·금융비용·사업기간을 주요 변수로 설정해 <b>시나리오별 민감도</b>를 점검합니다.",
+      "계약조건과 현장 상황을 함께 검토해 <b>분쟁 가능성을 조기에 식별</b>하고, 사업성이 변동되는 현장에는 리파이낸싱·추가 에쿼티 확보·사업비 절감·분양전략 조정 등 실행 가능한 대안을 검토해 보고합니다."
+    ]},
+    {h:"강점",items:[
+      "책임감과 연대감을 바탕으로 맡은 업무를 <b>끝까지 완수</b>합니다.",
+      "업무의 중요도와 시급성에 따라 우선순위를 설정하고, <b>핵심 리스크는 철저히 확인하되 의사결정 속도는 유지</b>하는 방식으로 장기 개발사업의 안정성과 실행 가능성을 높입니다."
+    ]}
+  ],
+  tags:["부동산개발","부동산시행","개발사업","부동산금융","부동산컨설팅","프로젝트 파이낸싱(PF)","담보대출","Valuation","리스크관리","부동산신탁","채권관리","도시개발","재개발","NPL","AI/인공지능"]
+};
+
+/* ═══════════════════════════════════════════════════
+   SCENE
+   ═══════════════════════════════════════════════════ */
+const cv = document.getElementById("stage");
+const ctx = cv.getContext("2d", {alpha:false});
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let W=0,H=0,DPR=1,CX=0,CY=0;
+const cam = {yaw:0.62, pitch:0.94, dist:640, fov:700, targetYaw:0.62, targetPitch:0.94, targetDist:640};
+
+function resize(){
+  DPR = Math.min(window.devicePixelRatio||1, 2);
+  W = window.innerWidth; H = window.innerHeight;
+  cv.width = W*DPR; cv.height = H*DPR;
+  cv.style.width = W+"px"; cv.style.height = H+"px";
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  CX = W*0.5; CY = H*0.5;
+  const base = Math.min(W,H);
+  cam.targetDist = base < 620 ? 1080 : 760;
+  if(!started) cam.dist = cam.targetDist;
+  cam.fov = base < 620 ? 620 : 720;
+}
+let started=false;
+
+/* 3D → 2D */
+function project(x,y,z){
+  const cy=Math.cos(cam.yaw), sy=Math.sin(cam.yaw);
+  let x1 = x*cy - z*sy;
+  let z1 = x*sy + z*cy;
+  const cp=Math.cos(cam.pitch), sp=Math.sin(cam.pitch);
+  let y1 = y*cp - z1*sp;
+  let z2 = y*sp + z1*cp;
+  const den = z2 + cam.dist;
+  if(den < 12) return null;
+  const f = cam.fov/den;
+  return {x:CX + x1*f, y:CY + y1*f, f:f, d:den};
+}
+
+/* orbit position → 3D */
+function orbitPos(p, ang){
+  let x = Math.cos(ang)*p.r, z = Math.sin(ang)*p.r, y = 0;
+  const ci=Math.cos(p.inc), si=Math.sin(p.inc);
+  let y2 = y*ci - z*si, z2 = y*si + z*ci;
+  const cn=Math.cos(p.node), sn=Math.sin(p.node);
+  let x3 = x*cn - z2*sn, z3 = x*sn + z2*cn;
+  return {x:x3, y:y2, z:z3};
+}
+
+/* starfield */
+const STARS=[];
+for(let i=0;i<460;i++){
+  const th=Math.random()*Math.PI*2, ph=Math.acos(2*Math.random()-1), R=780+Math.random()*1500;
+  STARS.push({x:R*Math.sin(ph)*Math.cos(th), y:R*Math.cos(ph)*0.6, z:R*Math.sin(ph)*Math.sin(th), m:Math.random()});
+}
+/* galactic disc particles (참조 이미지의 중심 나선) */
+const DISC=[];
+for(let i=0;i<1500;i++){
+  const arm = i%2, t=Math.pow(Math.random(),0.62);
+  const ang = t*4.4 + arm*Math.PI + (Math.random()-0.5)*0.46;
+  const rad = 14 + t*118 + (Math.random()-0.5)*22;
+  DISC.push({a:ang, r:rad, y:(Math.random()-0.5)*13*(1-t*0.62), m:Math.random(), t:t});
+}
+/* faint outer halo of the disc */
+const HALO=[];
+for(let i=0;i<420;i++){
+  const t=Math.random();
+  HALO.push({a:Math.random()*6.283, r:130+t*96, y:(Math.random()-0.5)*10, m:Math.random()});
+}
+
+let t0=performance.now(), tAcc=0;
+let hover=null, active=null;
+const screenPos = new Map();
+
+function draw(now){
+  const dt = Math.min(now-t0, 48); t0=now;
+  if(!reduce) tAcc += dt;
+
+  cam.yaw += (cam.targetYaw-cam.yaw)*0.075;
+  cam.pitch += (cam.targetPitch-cam.pitch)*0.075;
+  cam.dist += (cam.targetDist-cam.dist)*0.075;
+
+  ctx.fillStyle="#080B14";
+  ctx.fillRect(0,0,W,H);
+
+  /* stars */
+  for(const s of STARS){
+    const p=project(s.x,s.y,s.z); if(!p) continue;
+    const a=(0.16+s.m*0.5)*Math.min(1,p.f*2.4);
+    ctx.fillStyle="rgba(200,214,236,"+a.toFixed(3)+")";
+    ctx.fillRect(p.x, p.y, 1.15, 1.15);
+  }
+
+  /* galactic disc — additive spiral */
+  const spin = tAcc*0.000045;
+  ctx.globalCompositeOperation="lighter";
+  for(const h of HALO){
+    const a=h.a+spin*0.5;
+    const p=project(Math.cos(a)*h.r, h.y, Math.sin(a)*h.r); if(!p) continue;
+    const al=0.055*h.m*Math.min(1,p.f*2.2);
+    ctx.fillStyle="rgba(214,124,58,"+al.toFixed(3)+")";
+    ctx.fillRect(p.x,p.y,1.4,1.4);
+  }
+  for(const d of DISC){
+    const a=d.a+spin*(1.55-d.t*0.72);
+    const p=project(Math.cos(a)*d.r, d.y, Math.sin(a)*d.r); if(!p) continue;
+    const core=1-d.t;
+    const al=(0.055+core*0.30)*(0.35+d.m*0.65)*Math.min(1,p.f*2.4);
+    const g=Math.round(146+core*74), b=Math.round(74+core*72);
+    ctx.fillStyle="rgba(255,"+g+","+b+","+al.toFixed(3)+")";
+    const s=1.1+core*1.05;
+    ctx.fillRect(p.x,p.y,s,s);
+  }
+  ctx.globalCompositeOperation="source-over";
+
+  /* core glow */
+  const cp0=project(0,0,0);
+  if(cp0){
+    const gR=Math.max(46, 132*cp0.f);
+    const g=ctx.createRadialGradient(cp0.x,cp0.y,0,cp0.x,cp0.y,gR);
+    g.addColorStop(0,"rgba(255,206,133,.95)");
+    g.addColorStop(.16,"rgba(255,178,96,.52)");
+    g.addColorStop(.42,"rgba(224,132,60,.20)");
+    g.addColorStop(1,"rgba(180,90,40,0)");
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cp0.x,cp0.y,gR,0,6.283); ctx.fill();
+  }
+
+  /* orbit rings */
+  for(const p of PLANETS){
+    const on = (active===p.key)||(hover===p.key);
+    ctx.beginPath();
+    let first=true, broke=false;
+    for(let i=0;i<=96;i++){
+      const a=(i/96)*6.283;
+      const q=orbitPos(p,a); const pr=project(q.x,q.y,q.z);
+      if(!pr){broke=true;continue;}
+      if(first||broke){ctx.moveTo(pr.x,pr.y);first=false;broke=false;}
+      else ctx.lineTo(pr.x,pr.y);
+    }
+    ctx.strokeStyle = on ? "rgba(255,196,107,.62)" : "rgba(232,148,74,.19)";
+    ctx.lineWidth = on ? 1.3 : 0.85;
+    ctx.stroke();
+  }
+
+  /* planets */
+  screenPos.clear();
+  const items=[];
+  for(const p of PLANETS){
+    const ang = p.phase + tAcc*p.speed;
+    const q = orbitPos(p, ang);
+    const pr = project(q.x,q.y,q.z);
+    if(!pr) continue;
+    items.push({p,pr,q});
+  }
+  items.sort((a,b)=>b.pr.d-a.pr.d);
+
+  /* connective lines core→planet */
+  for(const it of items){
+    if(!cp0) break;
+    const on=(active===it.p.key)||(hover===it.p.key);
+    ctx.beginPath();
+    ctx.moveTo(cp0.x,cp0.y); ctx.lineTo(it.pr.x,it.pr.y);
+    ctx.strokeStyle = on?"rgba(255,196,107,.34)":"rgba(232,148,74,.085)";
+    ctx.lineWidth = on?1:0.6;
+    ctx.stroke();
+  }
+
+  for(const it of items){
+    const {p,pr}=it;
+    const on=(active===p.key)||(hover===p.key);
+    const rad=Math.max(3.2, p.size*pr.f*1.02)*(on?1.32:1);
+    screenPos.set(p.key,{x:pr.x,y:pr.y,r:Math.max(rad,15)});
+
+    const hg=ctx.createRadialGradient(pr.x,pr.y,0,pr.x,pr.y,rad*4.2);
+    hg.addColorStop(0,p.hue+(on?"77":"44"));
+    hg.addColorStop(1,p.hue+"00");
+    ctx.fillStyle=hg; ctx.beginPath(); ctx.arc(pr.x,pr.y,rad*4.2,0,6.283); ctx.fill();
+
+    /* mini accretion rings — 참조 이미지의 노드 질감 */
+    const flat=Math.abs(Math.cos(cam.pitch))*0.78+0.13;
+    for(let ri=1;ri<=3;ri++){
+      const rr=rad*(1.75+ri*0.92);
+      ctx.beginPath();
+      ctx.ellipse(pr.x,pr.y,rr,rr*flat,-cam.yaw*0.42,0,6.283);
+      ctx.strokeStyle="rgba(232,148,74,"+((on?0.30:0.17)/ri).toFixed(3)+")";
+      ctx.lineWidth=0.75; ctx.stroke();
+    }
+
+    const bg=ctx.createRadialGradient(pr.x-rad*.38,pr.y-rad*.38,rad*.1,pr.x,pr.y,rad);
+    bg.addColorStop(0,"#FFE0B4"); bg.addColorStop(.42,p.hue); bg.addColorStop(1,"#3A1E10");
+    ctx.fillStyle=bg; ctx.beginPath(); ctx.arc(pr.x,pr.y,rad,0,6.283); ctx.fill();
+
+    if(on){
+      ctx.beginPath(); ctx.arc(pr.x,pr.y,rad+6,0,6.283);
+      ctx.strokeStyle="rgba(255,206,133,.72)"; ctx.lineWidth=1.1; ctx.stroke();
+    }
+
+    /* 좁은 화면에서는 라벨이 뭉치므로 선택·호버된 것만 표시 */
+    if(W<=860 && !on) continue;
+
+    const lbl=p.label.toUpperCase();
+    ctx.font = (on?"500 ":"400 ")+"10.5px 'IBM Plex Mono', monospace";
+    ctx.textAlign="left"; ctx.textBaseline="middle";
+    const tw=ctx.measureText(lbl).width;
+    /* 우측 칩/여백에 부딪히면 라벨을 왼쪽으로 뒤집는다 */
+    const guardR = W>860 ? 208 : 18;
+    const flip = (pr.x + rad + 15 + tw) > (W - guardR);
+    const tx = flip ? (pr.x - rad - 13 - tw) : (pr.x + rad + 13);
+    const ty = pr.y;
+    ctx.fillStyle="rgba(8,11,20,.66)";
+    ctx.fillRect(tx-4, ty-8, tw+8, 16);
+    ctx.fillStyle= on?"#FFC46B":"rgba(216,224,238,.68)";
+    ctx.fillText(lbl,tx,ty);
+  }
+
+  /* core body */
+  if(cp0){
+    const pulse = reduce?1:(1+Math.sin(tAcc*0.0016)*0.045);
+    const cr=Math.max(7,20*cp0.f)*pulse;
+    const cg=ctx.createRadialGradient(cp0.x,cp0.y,0,cp0.x,cp0.y,cr);
+    cg.addColorStop(0,"#FFF4DE"); cg.addColorStop(.5,"#FFC46B"); cg.addColorStop(1,"#E07A2E");
+    ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(cp0.x,cp0.y,cr,0,6.283); ctx.fill();
+    screenPos.set("__core",{x:cp0.x,y:cp0.y,r:Math.max(cr,20)});
+
+    ctx.font="700 10.5px 'IBM Plex Mono', monospace";
+    ctx.textAlign="center"; ctx.textBaseline="middle";
+    ctx.fillStyle="rgba(8,11,20,.68)";
+    const cw=ctx.measureText("LEE GEONHO").width;
+    ctx.fillRect(cp0.x-cw/2-5, cp0.y+cr+8, cw+10, 15);
+    ctx.fillStyle="#FFC46B";
+    ctx.fillText("LEE GEONHO", cp0.x, cp0.y+cr+15.5);
+  }
+
+  requestAnimationFrame(draw);
+}
+
+/* ═══════════════════════════════════════════════════
+   PANEL
+   ═══════════════════════════════════════════════════ */
+const panel=document.getElementById("panel");
+const pi=document.getElementById("pi"), pt=document.getElementById("pt"),
+      ps=document.getElementById("ps"), pb=document.getElementById("pb");
+
+function render(d, idxLabel){
+  pi.textContent=idxLabel;
+  pt.textContent=d.title;
+  ps.textContent=d.sub||"";
+  let h="";
+  if(d.facts){
+    h+='<div class="facts">';
+    for(const f of d.facts) h+='<div class="fact"><b>'+f[0]+'</b><span>'+f[1]+'</span></div>';
+    h+='</div>';
+  }
+  if(d.lede) h+='<p class="lede">'+d.lede+'</p>';
+  for(const g of (d.groups||[])){
+    h+='<div class="grp"><h4>'+g.h+'</h4><ul>';
+    for(const it of g.items) h+='<li>'+it+'</li>';
+    h+='</ul></div>';
+  }
+  if(d.link) h+='<div class="grp"><h4>Repository</h4><a class="link" href="'+d.link.href+'" target="_blank" rel="noopener">↗ '+d.link.text+'</a></div>';
+  if(d.tags){
+    h+='<div class="grp"><h4>'+(d===CORE?"Skills · 15":"Related Skills")+'</h4><div class="tags">';
+    for(const tg of d.tags) h+='<span class="tag'+(d===CORE?' hot':'')+'">'+tg+'</span>';
+    h+='</div></div>';
+  }
+  pb.innerHTML=h;
+  pb.scrollTop=0;
+  panel.classList.add("open");
+}
+
+function openKey(k){
+  active=k;
+  if(k==="__core"){ render(CORE,"Profile · Core"); }
+  else{
+    const i=PLANETS.findIndex(p=>p.key===k);
+    render(PLANETS[i], "Orbit "+String(i+1).padStart(2,"0")+" · "+PLANETS[i].label);
+  }
+  for(const c of chipEls) c.classList.toggle("on", c.dataset.k===k);
+}
+function closePanel(){
+  panel.classList.remove("open"); active=null;
+  for(const c of chipEls) c.classList.remove("on");
+}
+document.getElementById("pc").addEventListener("click",closePanel);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closePanel(); });
+
+/* chips */
+const chipsEl=document.getElementById("chips");
+const chipEls=[];
+(function(){
+  const mk=(k,label)=>{
+    const b=document.createElement("button");
+    b.className="chip"; b.dataset.k=k; b.textContent=label;
+    b.addEventListener("click",()=>openKey(k));
+    chipsEl.appendChild(b); chipEls.push(b);
+  };
+  mk("__core","Profile");
+  for(const p of PLANETS) mk(p.key,p.label);
+})();
+
+/* ═══════════════════════════════════════════════════
+   INPUT
+   ═══════════════════════════════════════════════════ */
+let dragging=false, moved=0, lx=0, ly=0;
+
+function hit(mx,my){
+  let best=null, bd=1e9;
+  for(const [k,s] of screenPos){
+    const d=Math.hypot(mx-s.x,my-s.y);
+    if(d<s.r+13 && d<bd){bd=d;best=k;}
+  }
+  return best;
+}
+cv.addEventListener("pointerdown",e=>{
+  dragging=true; moved=0; lx=e.clientX; ly=e.clientY;
+  cv.classList.add("dragging"); cv.setPointerCapture(e.pointerId);
+});
+cv.addEventListener("pointermove",e=>{
+  if(dragging){
+    const dx=e.clientX-lx, dy=e.clientY-ly;
+    moved+=Math.abs(dx)+Math.abs(dy);
+    cam.targetYaw += dx*0.0052;
+    cam.targetPitch = Math.max(-1.42, Math.min(1.42, cam.targetPitch + dy*0.0042));
+    lx=e.clientX; ly=e.clientY;
+  }else{
+    const h=hit(e.clientX,e.clientY);
+    hover=h==="__core"?null:h;
+    cv.style.cursor = h?"pointer":"grab";
+  }
+});
+function endDrag(e){
+  if(!dragging) return;
+  dragging=false; cv.classList.remove("dragging");
+  if(moved<7){
+    const h=hit(e.clientX,e.clientY);
+    if(h) openKey(h); else closePanel();
+  }
+}
+cv.addEventListener("pointerup",endDrag);
+cv.addEventListener("pointercancel",()=>{dragging=false;cv.classList.remove("dragging");});
+cv.addEventListener("wheel",e=>{
+  e.preventDefault();
+  cam.targetDist = Math.max(300, Math.min(1500, cam.targetDist + e.deltaY*0.6));
+},{passive:false});
+
+window.addEventListener("resize",resize);
+resize(); started=true;
+
+/* intro sweep */
+if(!reduce){
+  cam.yaw=0.62-1.15; cam.pitch=1.36; cam.dist=cam.targetDist+560;
+}
+requestAnimationFrame(draw);
+})();
+</script>
