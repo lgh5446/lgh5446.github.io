@@ -271,7 +271,9 @@
     .role{display:none;}
   }
   @media (max-width:420px){
+    .metrics{flex-wrap:nowrap;gap:12px;}
     .metric b{font-size:17px;}
+    .metric span{letter-spacing:.08em;}
     .hangul{letter-spacing:.3em;}
   }
 
@@ -281,6 +283,7 @@
 
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 </style>
+<link rel="stylesheet" href="story.css">
 
 <canvas id="stage" aria-label="경력 행성계 인터랙티브 시각화"></canvas>
 <div class="vignette"></div>
@@ -293,6 +296,10 @@
     개발사업의 <strong>여신신청·사업수지·인허가·계약·분쟁 대응</strong>을 맡아,
     금융조건과 현장을 함께 살피는 개발·개발금융 실무자입니다.
   </p>
+  <button class="story-entry" type="button" data-story-open aria-haspopup="dialog" aria-controls="portfolio-story">
+    <span class="story-entry-orbit" aria-hidden="true"></span>
+    제가 일하는 방향 <span aria-hidden="true">↗</span>
+  </button>
 </header>
 
 <div class="metrics">
@@ -306,7 +313,7 @@
 
 <nav class="chips" id="chips" aria-label="영역 바로가기"></nav>
 
-<aside class="panel" id="panel" role="dialog" aria-modal="false" aria-labelledby="pt">
+<aside class="panel" id="panel" role="dialog" aria-modal="false" aria-labelledby="pt" inert>
   <div class="panel-head">
     <div>
       <p class="panel-idx" id="pi"></p>
@@ -319,6 +326,112 @@
 </aside>
 
 <p class="sr">이건호 부동산 개발 포트폴리오. 각 행성은 전문 영역을 나타내며 클릭하면 상세 내용이 열립니다.</p>
+
+<dialog class="story-dialog" id="portfolio-story" aria-labelledby="story-title" lang="ko">
+  <div class="story-bar">
+    <div class="story-bar-inner">
+      <span class="story-brand"><span class="story-entry-orbit" aria-hidden="true"></span> Development Orbit</span>
+      <button class="story-return" type="button" data-story-close><span aria-hidden="true">←</span> 궤도로 돌아가기</button>
+    </div>
+  </div>
+  <main class="story-page">
+    <header class="story-cover">
+      <div class="story-cover-copy">
+        <p class="story-kicker">이건호 자기소개</p>
+        <h2 id="story-title" tabindex="-1">제가 일하는 방향</h2>
+        <p class="story-lead">낯선 길에서 만난 사람들, 실무에서 다시 펼친 책, 손을 보탠 논, 요즘 직접 만드는 도구. 지금의 저를 설명하는 네 장면입니다.</p>
+        <button class="story-film-link" type="button" data-story-play><span aria-hidden="true">▶</span> 36초 영상 보기</button>
+      </div>
+      <figure class="story-cover-image">
+        <img src="assets/story/tools.webp" width="1280" height="720" loading="lazy" decoding="async" alt="">
+      </figure>
+    </header>
+
+    <nav class="story-index" aria-label="자기소개 목차">
+      <a href="#story-journey"><span>01</span> 여행</a>
+      <a href="#story-learning"><span>02</span> 실무와 배움</a>
+      <a href="#story-field"><span>03</span> 농사</a>
+      <a href="#story-tools"><span>04</span> 자료와 도구</a>
+    </nav>
+
+    <section class="story-chapters" aria-label="네 가지 이야기">
+      <article class="story-chapter" id="story-journey" aria-labelledby="story-journey-title">
+        <figure class="story-chapter-image">
+          <img src="assets/story/journey.webp" width="1280" height="720" loading="lazy" decoding="async" alt="두 배낭과 빈 지도, 돌다리를 작은 모형으로 구성한 여행 장면">
+        </figure>
+        <div class="story-chapter-copy">
+          <p class="story-kicker"><span>01</span> 함께 정하는 사람</p>
+          <h3 id="story-journey-title" tabindex="-1">혼자 떠나, 함께 정한 길</h3>
+          <p class="story-deck">낯선 사람의 사정부터 이해하려 했습니다.</p>
+          <p>홀로 아시아를 배낭여행하다 보면 처음 만난 여행자들과 길을 함께할 때가 있었습니다. 이동과 숙박을 함께 정하고 예상하지 못한 문제도 같이 풀었습니다.</p>
+          <p>언어와 배경이 다른 만큼 상대가 낯선 사람을 경계하는 마음부터 이해하려 했습니다. 서로 원하는 것을 확인하며 다음 일정을 정했습니다. 낯선 사람과 함께 움직이는 일은 그 사정을 이해하는 데서 시작한다고 생각합니다.</p>
+        </div>
+      </article>
+      <article class="story-chapter" id="story-learning" aria-labelledby="story-learning-title">
+        <figure class="story-chapter-image">
+          <img src="assets/story/learning.webp" width="1280" height="720" loading="lazy" decoding="async" alt="펼친 책과 건축 모형, 계산 격자를 등불로 비춘 학습 장면">
+        </figure>
+        <div class="story-chapter-copy">
+          <p class="story-kicker"><span>02</span> 다시 배우는 사람</p>
+          <h3 id="story-learning-title" tabindex="-1">모르는 일 앞에서</h3>
+          <p class="story-deck">꼼꼼함이 주저함에 머물지 않도록.</p>
+          <p>부동산을 전공하고 오래 공부했지만 실무에서는 다시 배울 일이 많았습니다. 재개발 사업의 비례율과 조합원 부담금도 엑셀로 계산 구조를 다시 세워 확인했습니다.</p>
+          <p>꼼꼼하게 확인하는 만큼 낯선 업무를 먼저 맡겠다고 말하기를 주저한 적도 있습니다. 지금은 모르는 내용과 확인 기한을 함께 밝히고 할 수 있는 범위를 제안합니다.</p>
+          <p>과장하지 않으려다 제가 맡았던 일이 충분히 전해지지 않은 적도 있습니다. 요즘은 제가 한 일과 역할을 자료로 남겨 동료에게 전하려고 합니다.</p>
+        </div>
+      </article>
+      <article class="story-chapter" id="story-field" aria-labelledby="story-field-title">
+        <figure class="story-chapter-image">
+          <img src="assets/story/field.webp" width="1280" height="720" loading="lazy" decoding="async" alt="논과 물길 옆에 장화를 놓은 작은 모형으로 표현한 가족 농업 지원 장면">
+        </figure>
+        <div class="story-chapter-copy">
+          <p class="story-kicker"><span>03</span> 필요한 일을 돕는 사람</p>
+          <h3 id="story-field-title" tabindex="-1">논에 물을 대던 시간</h3>
+          <p class="story-deck">공부와 가족의 일을 함께 이어갔습니다.</p>
+          <p>2025년 겨울부터는 AI 도구와 실무 관련 자격 공부를 병행하며 아버지의 농사일을 도왔습니다. 모내기와 농번기 일손 지원, 구거·농수로를 통한 논 물대기에 참여했습니다. 책상에서 배우는 일과 가족에게 필요한 일을 함께 이어간 시간이었습니다. 해야 할 일을 꾸준히 해 나가려는 마음은 지금도 같습니다.</p>
+        </div>
+      </article>
+      <article class="story-chapter" id="story-tools" aria-labelledby="story-tools-title">
+        <figure class="story-chapter-image">
+          <img src="assets/story/tools.webp" width="1280" height="720" loading="lazy" decoding="async" alt="책과 자료 카드를 빛의 선으로 연결한 모형으로 표현한 개인 작업 도구">
+        </figure>
+        <div class="story-chapter-copy">
+          <p class="story-kicker"><span>04</span> 직접 구성하는 사람</p>
+          <h3 id="story-tools-title" tabindex="-1">제 일에 맞는 도구</h3>
+          <p class="story-deck">자료를 찾고 쓰고 검토하는 순서를 만듭니다.</p>
+          <p>반복되는 자료 정리와 문서 검토를 제 작업에 맞게 바꾸고 싶었습니다. 필요한 기능을 정하고 AI에 구현을 지시한 뒤 계획·자료 정리·문서 작성·검수를 나누어 맡는 에이전트를 구성했습니다.</p>
+          <p>온톨로지로 법령과 학습자료의 개념·출처·관계를 연결해 근거를 찾아 대조합니다. 문장이 자연스러워도 맡은 일의 범위가 달라질 수 있어 원자료와 다시 맞춰 봅니다. 지금도 개인 자료를 정리하고 문서를 쓰고 검토하는 데 활용합니다.</p>
+        </div>
+      </article>
+    </section>
+
+    <p class="story-closing">확인할 것은 꼼꼼히 살피고 모르는 일은 기한을 정해 배웁니다. 제가 해낸 일과 더 배워야 할 일을 정확히 전하는 사람으로 일하고 싶습니다.</p>
+
+    <section class="story-film" id="story-film" aria-labelledby="story-film-title">
+      <header class="story-film-heading">
+        <p class="story-kicker">36초 · 무음</p>
+        <h3 id="story-film-title" tabindex="-1">네 장면으로 보는 자기소개</h3>
+      </header>
+      <video class="story-video" controls preload="none" playsinline width="1280" height="720" src="assets/story/overview.mp4" aria-label="제가 일하는 방향, 36초 무음 영상"></video>
+      <p class="story-video-error" hidden>이 화면에서 영상을 재생할 수 없습니다. <a href="assets/story/overview.mp4">영상 파일 열기</a></p>
+      <details class="story-transcript">
+        <summary>영상 문구 읽기</summary>
+        <ol>
+          <li>혼자 떠난 여행에서도 다음 길은 함께 정했습니다.</li>
+          <li>모르는 일은 먼저 인정하고 기한을 정해 다시 배웁니다.</li>
+          <li>공부를 이어가던 시간, 아버지의 논에도 손을 보탰습니다.</li>
+          <li>자료를 찾고 쓰고 다시 확인하는 제 일의 도구를 구성합니다.</li>
+        </ol>
+      </details>
+      <p class="story-note">경험을 바탕으로 구성한 이미지와 영상입니다.</p>
+    </section>
+
+    <footer class="story-footer">
+      <span class="story-brand"><span class="story-entry-orbit" aria-hidden="true"></span> 이건호</span>
+      <button class="story-return" type="button" data-story-close><span aria-hidden="true">←</span> 궤도로 돌아가기</button>
+    </footer>
+  </main>
+</dialog>
 
 <script>
 (function(){
@@ -593,6 +706,7 @@ for(let i=0;i<420;i++){
 let t0=performance.now(), tAcc=0;
 let hover=null, active=null;
 const screenPos = new Map();
+let orbitFrame;
 
 function draw(now){
   const dt = Math.min(now-t0, 48); t0=now;
@@ -775,7 +889,7 @@ function draw(now){
     ctx.fillText("LEE GEONHO", cp0.x, cp0.y+cr+15.5);
   }
 
-  requestAnimationFrame(draw);
+  orbitFrame=requestAnimationFrame(draw);
 }
 
 /* ═══════════════════════════════════════════════════
@@ -808,7 +922,12 @@ function render(d, idxLabel){
     h+='</div></div>';
   }
   pb.innerHTML=h;
+  if(d===CORE){
+    const storyEntry=document.querySelector(".masthead [data-story-open]").cloneNode(true);
+    pb.prepend(storyEntry);
+  }
   pb.scrollTop=0;
+  panel.inert=false;
   panel.classList.add("open");
 }
 
@@ -823,10 +942,12 @@ function openKey(k){
 }
 function closePanel(){
   panel.classList.remove("open"); active=null;
+  panel.inert=true;
   for(const c of chipEls) c.classList.remove("on");
 }
 document.getElementById("pc").addEventListener("click",closePanel);
-document.addEventListener("keydown",e=>{ if(e.key==="Escape") closePanel(); });
+const storyDialog=document.getElementById("portfolio-story");
+document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !storyDialog.open) closePanel(); });
 
 /* chips */
 const chipsEl=document.getElementById("chips");
@@ -894,6 +1015,15 @@ resize(); started=true;
 if(!reduce){
   cam.yaw=0.62-1.15; cam.pitch=1.36; cam.dist=cam.targetDist+560;
 }
-requestAnimationFrame(draw);
+function syncOrbit(){
+  cancelAnimationFrame(orbitFrame);
+  if(!storyDialog.open){
+    t0=performance.now();
+    orbitFrame=requestAnimationFrame(draw);
+  }
+}
+document.addEventListener("portfolio:story-change",syncOrbit);
+syncOrbit();
 })();
 </script>
+<script src="story.js" defer></script>
