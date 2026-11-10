@@ -134,7 +134,7 @@
         });
       });
     }, { rootMargin: "-10% 0px -65% 0px" });
-    document.querySelectorAll("#practice, #career, #credentials, #person, #direction, #contact").forEach((section) => sectionObserver.observe(section));
+    document.querySelectorAll("#practice, #orbit, #credentials, #person, #direction, #contact").forEach((section) => sectionObserver.observe(section));
   }
   const film = document.getElementById("direction-film");
   film.addEventListener("error", () => { document.getElementById("direction-film-error").hidden = false; });

@@ -28,7 +28,8 @@
     document.dispatchEvent(new Event("portfolio:story-change"));
     if (opener?.isConnected) opener.focus({ preventScroll: true });
   });
-  story.querySelectorAll("[data-story-close]").forEach((button) => button.addEventListener("click", () => story.close()));
+  story.addEventListener("cancel", () => video.pause());
+  story.querySelectorAll("[data-story-close]").forEach((button) => button.addEventListener("click", () => { video.pause(); story.close(); }));
   story.querySelectorAll(".story-index a").forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
