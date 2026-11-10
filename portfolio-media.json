@@ -1,12 +1,12 @@
 {
-  "src": "assets/story/introduction-seven-scenes.mp4",
-  "poster": "assets/story/introduction-seven-scenes-poster.webp",
-  "durationSeconds": 17,
-  "shots": 7,
-  "label": "17초 소개 영상",
-  "meta": "7컷 · 무음",
-  "action": "17초 소개 영상 보기",
-  "storyMeta": "17초 · 7컷 · 무음",
-  "ariaLabel": "제가 일하는 방향, 17초 무음 소개 영상",
+  "src": "assets/story/introduction-continuous-story.mp4",
+  "poster": "assets/story/introduction-continuous-story-poster.webp",
+  "durationSeconds": 60.5,
+  "shots": 20,
+  "label": "약 1분 소개 영상",
+  "meta": "60.5초 · 20컷 · 무음",
+  "action": "약 1분 소개 영상 보기",
+  "storyMeta": "60.5초 · 20컷 · 무음",
+  "ariaLabel": "저는 이런 사람입니다, 60.5초 무음 소개 영상",
   "disclosure": "AI로 재구성한 가상 인물과 장면입니다. 실제 인물이나 현장 기록이 아닙니다."
 }

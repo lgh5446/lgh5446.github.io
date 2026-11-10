@@ -12,24 +12,27 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="story.css">
 <link rel="stylesheet" href="portfolio.css">
+<link rel="stylesheet" href="portfolio-flow.css?v=c5bb9a6ddb31">
 <script src="portfolio-data.js" defer></script>
-<script src="portfolio.js" defer></script>
+<script src="portfolio.js?v=06fa9375bf1b" defer></script>
 <script src="portfolio-orbit.js" defer></script>
 <script src="story.js?v=8d0f50214c6c" defer></script>
+<script src="portfolio-flow.js?v=47fc2b230f13" defer></script>
+<script src="portfolio-film.js?v=dcd2fbb6ff19" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">본문으로 바로가기</a>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="#profile" aria-label="이건호 소개로 이동"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="16" rx="14" ry="5" fill="none" stroke="currentColor" stroke-width="1.2" transform="rotate(-30 16 16)"/><circle cx="16" cy="16" r="6" fill="currentColor"/></svg><span>LEE GEONHO</span></a>
+    <a class="brand" href="#profile" aria-label="LEE GEONHO · 이건호 소개로 이동"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="16" rx="14" ry="5" fill="none" stroke="currentColor" stroke-width="1.2" transform="rotate(-30 16 16)"/><circle cx="16" cy="16" r="6" fill="currentColor"/></svg><span>LEE GEONHO</span></a>
     <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="site-navigation" aria-expanded="false"><span class="menu-icon" aria-hidden="true"></span></button>
     <nav class="site-nav" id="site-navigation" aria-label="페이지 탐색">
-      <a href="#practice">실무 경험</a><a href="#career">경력</a><a href="#credentials">학력·자격</a><a href="#direction">제가 일하는 방향</a><a href="#contact">공개 기록</a>
+      <a href="#practice">실무 경험</a><a href="#career">경력</a><a href="#credentials">학력·자격</a><a href="#person">자기소개</a><a href="#direction">제가 일하는 방향</a><a href="#contact">공개 기록</a>
     </nav>
   </div>
 </header>
 <main id="main" tabindex="-1">
-  <section class="hero container" id="profile" aria-labelledby="profile-title">
+<section class="hero container" id="profile" aria-labelledby="profile-title">
     <div class="hero-grid">
       <div class="hero-copy">
         <p class="identity"><strong>이건호</strong> 부동산 개발·개발금융 실무자</p>
@@ -37,7 +40,7 @@
         <p class="hero-summary">개발사업의 <strong>여신신청·사업수지·인허가·계약·분쟁 대응</strong>을 맡아, 금융조건과 현장을 함께 살피는 개발·개발금융 실무자입니다.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#practice">실무 경험 보기 <span aria-hidden="true">↓</span></a>
-          <button class="story-entry" type="button" data-story-open aria-haspopup="dialog" aria-controls="portfolio-story">제가 일하는 방향 <span aria-hidden="true">↗</span></button>
+          <a class="story-entry" href="#person">자기소개 읽기 <span aria-hidden="true">↓</span></a>
         </div>
       </div>
       <figure class="hero-media">
@@ -45,55 +48,43 @@
         <figcaption class="media-caption"><span>AI로 재구성한 가상 장면입니다.</span><span class="caption-index">DEVELOPMENT ORBIT</span></figcaption>
       </figure>
     </div>
-    <div class="hero-foot"><p>한연개발 개발사업부 시행사업팀 · 2021.12~2023.06</p><button class="text-link" type="button" data-detail-key="__core" aria-haspopup="dialog" aria-controls="panel">업무 방식과 강점 <span aria-hidden="true">↗</span></button></div>
+    <div class="profile-more"><button class="text-link" type="button" data-detail-key="__core" aria-haspopup="dialog" aria-controls="panel">업무 방식과 강점 <span aria-hidden="true">↗</span></button></div>
   </section>
-
-  <section class="section" id="practice" aria-labelledby="practice-title">
-    <div class="container">
-      <header class="section-heading"><div><span class="section-number">01 / PRACTICE</span><h2 id="practice-title">제가 맡았던 실무</h2></div><p>금융서류, 사업수지, 협의와 현장 대응.<br>각 업무에서 맡은 역할과 검토 범위를 함께 전합니다.</p></header>
-      <div class="practice-grid">
-        <div class="practice-visual reveal"><figure><div class="photo-frame"><img src="assets/project-analysis.webp" alt="사업 자료와 도면, 계산표를 살피는 가상의 검토 장면" width="1672" height="941" loading="lazy" decoding="async"></div><figcaption class="media-caption">AI로 재구성한 가상 장면입니다.</figcaption></figure><p class="practice-intro">조건을 확인하고,<br>사업의 다음 단계를 준비했습니다.</p><p class="practice-context">개발사업 PM·시행·자금관리 업무를 맡아 여신신청 자료, 사업수지 검토자료, 계약과 협의에 필요한 문서를 준비했습니다.</p></div>
-        <div class="practice-items"><article class="practice-item reveal"><span class="item-number">01</span><div><h3>개발금융 · PF</h3><p data-summary-key="finance">브릿지론·본PF의 여신승인신청 자료를 작성하고 인출선행조건을 관리했습니다. 미분양담보대출 실행·만기 연장에 필요한 계약과 증빙도 준비했습니다.</p><ul><li>브릿지론·본PF의 <b>여신승인신청</b>, 대출 인출선행조건 관리</li><li>생활숙박시설·타운하우스·복합상업시설의 <b>미분양담보대출 실행·연장 관련 서류</b> 준비</li></ul><span class="scope-note">물류시설은 실행에 이르지 않은 사업의 검토 경험도 포함합니다.</span><button type="button" class="text-link" data-detail-key="finance" aria-haspopup="dialog" aria-controls="panel" aria-label="개발금융 · PF 자세히 보기">담당 업무 자세히 보기 <span aria-hidden="true">↗</span></button></div></article>
-<article class="practice-item reveal"><span class="item-number">02</span><div><h3>정비사업 · 재개발/재건축</h3><p data-summary-key="renewal">정비사업 2개 구역의 사업비·용역비·조합원 부담금과 추정 비례율을 검토했습니다. 두 구역에서 맡은 공통 업무는 조합 소통, 설명회와 심의 접수였습니다.</p><ul><li>사업비·용역비 추계와 조합원 부담금·<b>추정 비례율</b> 검토</li><li><b>건축·경관심의</b> 보완자료와 재심의 접수 지원</li></ul><span class="scope-note">서로 다른 2개 구역의 관리 지원이며, 별도 재건축사업은 인수에 이르지 않은 검토 경험입니다.</span><button type="button" class="text-link" data-detail-key="renewal" aria-haspopup="dialog" aria-controls="panel" aria-label="정비사업 · 재개발/재건축 자세히 보기">담당 업무 자세히 보기 <span aria-hidden="true">↗</span></button></div></article>
-<article class="practice-item reveal"><span class="item-number">03</span><div><h3>도시개발사업</h3><p data-summary-key="urban">도시개발 구역지정 제안 접수를 지원하고 기본설계·사업수지를 검토했습니다. 별도 사업에서는 업무대행사 사업참여 제안서를 단독으로 작성해 제출했습니다.</p><ul><li>주민 구역지정 제안 접수와 개발계획·기본설계·사업수지 검토 지원</li><li>업무대행사 <b>사업참여 제안서 단독 작성·제출</b></li></ul><span class="scope-note">토지가치 검토자료 분석은 감정평가 업무가 아닙니다. 별도 사업참여 제안서는 미선정·미실행입니다.</span><button type="button" class="text-link" data-detail-key="urban" aria-haspopup="dialog" aria-controls="panel" aria-label="도시개발사업 자세히 보기">담당 업무 자세히 보기 <span aria-hidden="true">↗</span></button></div></article>
-<article class="practice-item reveal"><span class="item-number">04</span><div><h3>NPL · 채권 및 분쟁관리</h3><p data-summary-key="npl">개발사업의 채권·자금을 관리하고 계약·분쟁 자료를 준비했습니다. 현장 민원에도 대응하며 필요한 유관기관 협조를 요청했습니다.</p><ul><li><b>계약조건·채권 관련 자료</b> 검토 및 자금관리</li><li>수분양자·신탁사 등 이해관계자 협의 지원</li></ul><span class="scope-note">사업의 규모와 담당 역할을 나누어 설명합니다. 계약·분쟁 대응은 관련 자료 준비와 협의 지원을 포함합니다.</span><button type="button" class="text-link" data-detail-key="npl" aria-haspopup="dialog" aria-controls="panel" aria-label="NPL · 채권 및 분쟁관리 자세히 보기">담당 업무 자세히 보기 <span aria-hidden="true">↗</span></button></div></article></div>
-      </div>
+<section class="section work-section" id="practice" aria-labelledby="practice-title">
+  <div class="container">
+    <header class="section-heading"><div class="heading-group"><span class="flow-number">01</span><h2 id="practice-title">경력과 담당 업무</h2></div><p>회사에서 맡았던 일을 먼저 읽고,<br>관심 있는 영역의 상세를 펼쳐보세요.</p></header>
+    <div class="workbench">
+      <section class="career-summary" id="career" aria-labelledby="career-title">
+        <p class="career-period">2021.12~2023.06 <span>· 1년 7개월</span></p>
+        <h3 id="career-title">주식회사 한연개발</h3>
+        <p class="career-role">개발사업부 시행사업팀<br>사원/팀원</p>
+        <p class="career-lead">개발사업 PM·시행·자금관리 실무를 맡았습니다.</p>
+        <p class="career-assets">복합상업시설 · 타운하우스<br>생활숙박시설 · 미분양 아파트</p>
+        <button class="text-link" type="button" data-detail-key="career" aria-haspopup="dialog" aria-controls="panel">경력기술서 전체 보기 <span aria-hidden="true">↗</span></button>
+        <figure class="workbench-image"><div class="photo-frame"><img src="assets/project-analysis.webp" alt="사업 자료와 도면을 검토하는 가상의 작업 장면" width="1672" height="941" loading="lazy" decoding="async"></div><figcaption class="media-caption">AI로 재구성한 가상 장면입니다.</figcaption></figure>
+        <div class="after-career"><h4>퇴사 후 · 학습과 개인 활용</h4><p>자격 학습과 개인 자료 정리·문서 작성 도구 활용을 이어가고 있습니다.</p><button class="text-link" type="button" data-detail-key="ai" aria-haspopup="dialog" aria-controls="panel">개인 도구 활용 범위 <span aria-hidden="true">↗</span></button></div>
+      </section>
+      <div class="practice-briefs" aria-label="네 가지 실무 요약"><details class="practice-brief" name="practice-briefs" id="practice-finance" open><summary><span class="brief-title"><span class="brief-number">01</span><span>개발금융 · PF</span><span class="brief-toggle" aria-hidden="true"></span></span><span class="brief-summary">여신승인신청 자료와 인출조건을 관리하고, 담보대출 실행·연장 서류를 준비했습니다.</span><span class="brief-scope">자료 작성·조건 관리 · 물류시설은 미실행 검토 포함</span></summary><div class="brief-content"><ul><li>브릿지론·본PF의 <b>여신승인신청</b>, 대출 인출선행조건 관리</li><li>생활숙박시설·타운하우스·복합상업시설의 <b>미분양담보대출 실행·연장 관련 서류</b> 준비</li></ul><button class="text-link" type="button" data-detail-key="finance" aria-haspopup="dialog" aria-controls="panel" aria-label="개발금융 · PF 상세 업무 보기">상세 업무 보기 <span aria-hidden="true">↗</span></button></div></details>
+<details class="practice-brief" name="practice-briefs" id="practice-renewal"><summary><span class="brief-title"><span class="brief-number">02</span><span>정비사업 · 재개발/재건축</span><span class="brief-toggle" aria-hidden="true"></span></span><span class="brief-summary">정비사업 2개 구역의 추정 비례율·부담금을 검토하고, 조합 협의와 심의 접수를 지원했습니다.</span><span class="brief-scope">관리 지원 · 별도 재건축사업은 미인수 검토</span></summary><div class="brief-content"><ul><li><b>수백~1천세대 이상</b> 규모의 서로 다른 2개 구역 관리 지원</li><li><b>건축·경관심의</b> 보완자료와 재심의 접수 지원</li></ul><button class="text-link" type="button" data-detail-key="renewal" aria-haspopup="dialog" aria-controls="panel" aria-label="정비사업 · 재개발/재건축 상세 업무 보기">상세 업무 보기 <span aria-hidden="true">↗</span></button></div></details>
+<details class="practice-brief" name="practice-briefs" id="practice-urban"><summary><span class="brief-title"><span class="brief-number">03</span><span>도시개발사업</span><span class="brief-toggle" aria-hidden="true"></span></span><span class="brief-summary">구역지정 제안 접수·계획 검토를 지원하고, 별도 사업참여 제안서를 단독 작성·제출했습니다.</span><span class="brief-scope">제안서 미선정·미실행 · 토지가치 자료 분석은 감정평가 아님</span></summary><div class="brief-content"><ul><li><b>1만~10만㎡ 미만</b>의 별도 계획을 각각 검토</li><li>주민 구역지정 제안 접수와 개발계획·기본설계·사업수지 검토 지원</li></ul><button class="text-link" type="button" data-detail-key="urban" aria-haspopup="dialog" aria-controls="panel" aria-label="도시개발사업 상세 업무 보기">상세 업무 보기 <span aria-hidden="true">↗</span></button></div></details>
+<details class="practice-brief" name="practice-briefs" id="practice-npl"><summary><span class="brief-title"><span class="brief-number">04</span><span>NPL · 채권 및 분쟁관리</span><span class="brief-toggle" aria-hidden="true"></span></span><span class="brief-summary">개발사업의 채권·자금관리, 계약·분쟁 자료 준비와 현장 민원 대응을 맡았습니다.</span><span class="brief-scope">계약·법률 검토자료 준비와 이해관계자 협의 지원</span></summary><div class="brief-content"><ul><li><b>계약조건·채권 관련 자료</b> 검토 및 자금관리</li><li>수분양자·신탁사 등 이해관계자 협의 지원</li></ul><button class="text-link" type="button" data-detail-key="npl" aria-haspopup="dialog" aria-controls="panel" aria-label="NPL · 채권 및 분쟁관리 상세 업무 보기">상세 업무 보기 <span aria-hidden="true">↗</span></button></div></details></div>
     </div>
-  </section>
-
-  <section class="section orbit-section" id="orbit" aria-labelledby="orbit-title">
-    <div class="container">
-      <header class="section-heading"><div><span class="section-number">02 / DEVELOPMENT ORBIT</span><h2 id="orbit-title">하나의 일로 연결되는 경험</h2></div><p>관심 있는 영역을 선택해 담당 업무와 검토 범위를 살펴보세요.<br>궤도와 목록은 같은 상세 내용으로 이어집니다.</p></header>
-      <div class="orbit-layout">
-        <div class="orbit-visual"><div class="orbit-scene"><canvas id="stage" aria-hidden="true"></canvas></div><div class="orbit-controls"><button class="orbit-control" id="orbit-motion" type="button" aria-pressed="false"><span aria-hidden="true">Ⅱ</span> 움직임 일시정지</button><button class="orbit-control" id="orbit-zoom-in" type="button" aria-label="궤도 확대">＋</button><button class="orbit-control" id="orbit-zoom-out" type="button" aria-label="궤도 축소">−</button><button class="orbit-control" id="orbit-reset" type="button">시점 초기화</button></div><p class="orbit-help">마우스로 드래그해 시점을 바꿀 수 있습니다. 스크롤하면 다음 내용으로 이어집니다.</p></div>
-        <nav class="orbit-list chips" id="chips" aria-label="8개 소개 영역"><button class="domain-link chip" type="button" data-detail-key="__core" data-k="__core" aria-haspopup="dialog" aria-controls="panel" aria-pressed="false"><span class="domain-number">00</span><span><span class="domain-name">Profile</span><span class="domain-description">이건호 · 업무 방식과 강점</span></span><span class="domain-arrow" aria-hidden="true">↗</span></button>
+    <section class="orbit-dock" id="orbit" aria-labelledby="orbit-title">
+      <div class="orbit-dock-copy"><h3 id="orbit-title">경력 영역을 한눈에</h3><p>작은 궤도에서 관심 있는 영역을 고르거나,<br>목록을 펼쳐 같은 상세 내용을 읽을 수 있습니다.</p><details class="orbit-disclosure" id="orbit-disclosure"><summary><span>8개 영역 탐색</span><span class="disclosure-state" aria-hidden="true"></span></summary><nav class="orbit-list chips" id="chips" aria-label="8개 소개 영역"><button class="domain-link chip" type="button" data-detail-key="__core" data-k="__core" aria-haspopup="dialog" aria-controls="panel" aria-pressed="false"><span class="domain-number">00</span><span><span class="domain-name">Profile</span><span class="domain-description">이건호 · 업무 방식과 강점</span></span><span class="domain-arrow" aria-hidden="true">↗</span></button>
 <button class="domain-link chip" type="button" data-detail-key="finance" data-k="finance" aria-haspopup="dialog" aria-controls="panel" aria-pressed="false"><span class="domain-number">01</span><span><span class="domain-name">Development Finance</span><span class="domain-description">개발금융 · 여신신청과 조건관리</span></span><span class="domain-arrow" aria-hidden="true">↗</span></button>
 <button class="domain-link chip" type="button" data-detail-key="renewal" data-k="renewal" aria-haspopup="dialog" aria-controls="panel" aria-pressed="false"><span class="domain-number">02</span><span><span class="domain-name">Urban Renewal</span><span class="domain-description">정비사업 · 비례율과 조합 협의</span></span><span class="domain-arrow" aria-hidden="true">↗</span></button>
 <button class="domain-link chip" type="button" data-detail-key="urban" data-k="urban" aria-haspopup="dialog" aria-controls="panel" aria-pressed="false"><span class="domain-number">03</span><span><span class="domain-name">Urban Development</span><span class="domain-description">도시개발 · 계획검토와 제안</span></span><span class="domain-arrow" aria-hidden="true">↗</span></button>
 <button class="domain-link chip" type="button" data-detail-key="npl" data-k="npl" aria-haspopup="dialog" aria-controls="panel" aria-pressed="false"><span class="domain-number">04</span><span><span class="domain-name">Distressed Debt</span><span class="domain-description">채권관리 · 계약과 분쟁 자료</span></span><span class="domain-arrow" aria-hidden="true">↗</span></button>
 <button class="domain-link chip" type="button" data-detail-key="ai" data-k="ai" aria-haspopup="dialog" aria-controls="panel" aria-pressed="false"><span class="domain-number">05</span><span><span class="domain-name">AI Orchestration</span><span class="domain-description">개인 에이전트 · 자료와 도구</span></span><span class="domain-arrow" aria-hidden="true">↗</span></button>
 <button class="domain-link chip" type="button" data-detail-key="career" data-k="career" aria-haspopup="dialog" aria-controls="panel" aria-pressed="false"><span class="domain-number">06</span><span><span class="domain-name">Career</span><span class="domain-description">한연개발 · 담당 업무와 산출물</span></span><span class="domain-arrow" aria-hidden="true">↗</span></button>
-<button class="domain-link chip" type="button" data-detail-key="credentials" data-k="credentials" aria-haspopup="dialog" aria-controls="panel" aria-pressed="false"><span class="domain-number">07</span><span><span class="domain-name">Credentials</span><span class="domain-description">학력 · 취득과 필기합격 구분</span></span><span class="domain-arrow" aria-hidden="true">↗</span></button></nav>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="career" aria-labelledby="career-title">
+<button class="domain-link chip" type="button" data-detail-key="credentials" data-k="credentials" aria-haspopup="dialog" aria-controls="panel" aria-pressed="false"><span class="domain-number">07</span><span><span class="domain-name">Credentials</span><span class="domain-description">학력 · 취득과 필기합격 구분</span></span><span class="domain-arrow" aria-hidden="true">↗</span></button></nav><div class="orbit-tools"><button class="orbit-control" id="orbit-zoom-in" type="button" aria-label="궤도 확대">＋</button><button class="orbit-control" id="orbit-zoom-out" type="button" aria-label="궤도 축소">−</button><button class="orbit-control" id="orbit-reset" type="button">시점 초기화</button></div></details></div>
+      <div class="orbit-visual"><div class="orbit-scene"><canvas id="stage" aria-hidden="true"></canvas></div><button class="orbit-control orbit-motion" id="orbit-motion" type="button" aria-pressed="false"><span aria-hidden="true">Ⅱ</span> 움직임 일시정지</button></div>
+    </section>
+  </div>
+</section>
+<section class="section" id="credentials" aria-labelledby="credentials-title">
     <div class="container">
-      <header class="section-heading"><div><h2 id="career-title">경력과 그 이후의 준비</h2></div><p>재직 당시의 담당 업무와 퇴사 후의 학습·개인 활용을 구분했습니다.</p></header>
-      <div class="career-grid">
-        <div class="career-ledger">
-          <article class="career-entry reveal"><div class="career-period">2021.12~2023.06<span>1년 7개월</span></div><div><h3>주식회사 한연개발</h3><p class="career-role">개발사업부 시행사업팀 · 사원/팀원</p><p data-summary-key="career">개발사업부 시행사업팀에서 부동산 개발사업의 시행·PM 및 자금관리를 담당했습니다.</p><ul class="career-duties"><li>부동산 상품별 개발사업 <b>PM·시행 및 자금관리</b> — 복합상업시설, 타운하우스, 생활숙박시설, 미분양 아파트</li><li>도시개발 구역지정 제안 접수 및 사업참여 제안서 작성</li><li>정비사업 관련 조합 협의·심의 지원, 계약·분쟁 자료 대응</li></ul><button class="text-link" type="button" data-detail-key="career" aria-haspopup="dialog" aria-controls="panel">경력기술서 전체 보기 <span aria-hidden="true">↗</span></button></div></article>
-          <article class="career-entry reveal"><div class="career-period">퇴사 후<span>학습·개인 활용</span></div><div><h3>실무에 돌아갈 준비</h3><p>감정평가사 수험 준비를 이어가고, 실무에서 부족하다고 느낀 금융과 건축을 공부해 투자자산운용사와 건축기사를 취득했습니다.</p><p>2025년 겨울부터는 아버지의 농사일에도 손을 보탰습니다. AI 도구와 실무 관련 자격 학습도 병행하며 실무에 복귀할 준비를 계속했습니다.</p><button class="text-link" type="button" data-story-open data-story-target="story-field" aria-haspopup="dialog" aria-controls="portfolio-story">그 시간을 보낸 방식 <span aria-hidden="true">↗</span></button></div></article>
-        </div>
-        <figure class="career-visual reveal"><div class="photo-frame"><img src="assets/field-observation.webp" alt="도시와 건물의 주변 환경을 살펴보는 가상의 현장 관찰 장면" width="1672" height="941" loading="lazy" decoding="async"></div><figcaption class="media-caption">AI로 재구성한 가상 장면입니다. 실제 담당 사업장의 사진이 아닙니다.</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="credentials" aria-labelledby="credentials-title">
-    <div class="container">
-      <header class="section-heading"><div><h2 id="credentials-title">배운 기반과 갖춘 자격</h2></div><p>취득 5건과 필기합격 1건을 구분해 표시했습니다.</p></header>
+      <header class="section-heading"><div class="heading-group"><span class="flow-number">02</span><h2 id="credentials-title">학력과 자격</h2></div><p>취득 5건과 필기합격 1건을 구분해 표시했습니다.</p></header>
       <div class="credentials-grid">
         <article class="education reveal"><h3>대구대학교<br>부동산학과</h3><p>학사 · 주간 · 학점 3.4 / 4.5</p><p class="education-dates">2013.03 입학 ~ 2020.08 졸업</p><p>민법·부동산학원론·경제학·부동산공법·부동산공시법을 이수했습니다.</p><button class="text-link" type="button" data-detail-key="credentials" aria-haspopup="dialog" aria-controls="panel">학술 활동·교육까지 보기 <span aria-hidden="true">↗</span></button></article>
         <div class="reveal"><table class="credential-table"><caption>최종합격·취득한 자격</caption><thead><tr><th scope="col">자격</th><th scope="col">취득 상태</th><th scope="col">시기</th></tr></thead><tbody>
@@ -104,34 +95,52 @@
           <tr><td class="credential-name">ITQ MS워드</td><td class="credential-status">B등급</td><td>2026.01</td></tr>
         </tbody></table><article class="partial-credential"><h3>도시계획기사 <span>· 필기합격</span></h3><p>한국산업인력공단 · 2025.02 필기합격 상태입니다.</p></article></div>
       </div>
-      <div class="skill-band"><h3>실무와 학습으로 연결한 영역</h3><div class="tags"><span class="tag">부동산개발</span><span class="tag">부동산시행</span><span class="tag">개발사업</span><span class="tag">부동산금융</span><span class="tag">부동산컨설팅</span><span class="tag">프로젝트 파이낸싱(PF)</span><span class="tag">담보대출</span><span class="tag">Valuation</span><span class="tag">리스크관리</span><span class="tag">부동산신탁</span><span class="tag">채권관리</span><span class="tag">도시개발</span><span class="tag">재개발</span><span class="tag">NPL</span><span class="tag">AI/인공지능</span></div></div>
     </div>
   </section>
-
-  <section class="section" id="direction" aria-labelledby="direction-title">
-    <div class="container">
-      <header class="section-heading"><div><span class="section-number">03 / MY DIRECTION</span><h2 id="direction-title">제가 일하는 방향</h2></div></header>
-      <p class="direction-lead">낯선 길에서 만난 사람들, 실무에서 다시 펼친 책, 손을 보탠 논, 요즘 직접 만드는 도구. 지금의 저를 설명하는 네 장면입니다.</p>
-      <div class="direction-film-grid">
-        <div class="reveal"><div class="film-frame"><video data-portfolio-film class="portfolio-video" id="direction-film" controls preload="none" playsinline width="1920" height="1080" poster="assets/story/introduction-seven-scenes-poster.webp" src="assets/story/introduction-seven-scenes.mp4" aria-label="제가 일하는 방향, 17초 무음 소개 영상"></video></div><p class="film-meta"><span data-film-label>17초 소개 영상</span><span data-film-meta>7컷 · 무음</span></p><p class="film-description" data-film-disclosure>AI로 재구성한 가상 인물과 장면입니다. 실제 인물이나 현장 기록이 아닙니다.</p><p class="story-video-error" id="direction-film-error" hidden>영상을 재생할 수 없습니다. <a data-film-download href="assets/story/introduction-seven-scenes.mp4">영상 파일 열기</a></p></div>
-        <div class="film-side reveal"><h3>모르는 일 앞에서는<br>확인할 내용과 기한부터 정합니다.</h3><p>제가 한 일과 맡은 역할을 함께 전하고 더 배워야 할 부분도 숨기지 않으려 합니다.</p><button class="button" type="button" data-story-open aria-haspopup="dialog" aria-controls="portfolio-story">자기소개 전체 읽기 <span aria-hidden="true">↗</span></button></div>
+<section class="section person-section" id="person" aria-labelledby="person-title">
+  <div class="container">
+    <header class="section-heading"><div class="heading-group"><span class="flow-number">03</span><h2 id="person-title">저는 이런 사람입니다</h2></div></header>
+    <div class="person-layout">
+      <div class="person-introduction">
+        <p class="person-lead">저를 설명할 때는 신중함과 솔직함을 먼저 떠올립니다. 스스로에게 엄격한 만큼 주저했던 순간도 있습니다. 지금은 제가 할 수 있는 일과 더 배워야 할 일을 함께 말하려고 합니다.</p>
+        <figure class="person-image"><div class="photo-frame"><img src="assets/person-journey.webp" alt="배낭을 멘 가상 인물이 낯선 여행지의 길을 바라보는 재구성 장면" width="1672" height="941" loading="lazy" decoding="async"></div><figcaption class="media-caption">배낭여행 경험을 바탕으로 AI가 재구성한 가상 장면입니다.</figcaption></figure>
+        <aside class="family-note" aria-labelledby="family-note-title"><h3 id="family-note-title">가족과 보낸 시간</h3><p>2025년 겨울부터는 공부를 이어가며 아버지의 농사일에도 손을 보탰습니다. 모내기와 농번기 일손 지원, 논에 물을 대는 일에 참여했습니다.</p></aside>
       </div>
-      <div class="chapter-previews" aria-label="자기소개 네 가지 이야기"><article class="chapter-preview reveal"><span>01</span><div><h3>혼자 떠나, 함께 정한 길</h3><p>코로나 이전에는 홀로 아시아를 배낭여행했습니다. 새 여행지에서 만난 배낭여행객들과 일정을 나누다 함께 다니기도 했습니다. 이동과 숙박을 같이 정하고 예상하지 못한 문제는 그때그때 풀었습니다.</p><button class="text-link" type="button" data-story-open data-story-target="story-journey" aria-haspopup="dialog" aria-controls="portfolio-story" aria-label="혼자 떠나, 함께 정한 길 전체 이야기 읽기">이야기 이어 읽기 <span aria-hidden="true">↗</span></button></div></article>
-<article class="chapter-preview reveal"><span>02</span><div><h3>모르는 일 앞에서</h3><p>부동산을 전공하고 민법·공법·경제학을 오래 공부했습니다. 그래도 실무에서는 처음부터 다시 확인할 일이 많았습니다. 재개발 사업의 비례율과 조합원 부담금을 검토할 때는 엑셀 계산 구조를 다시 세워 비용이 달라지면 부담금이 어떻게 바뀌는지 살폈습니다.</p><button class="text-link" type="button" data-story-open data-story-target="story-learning" aria-haspopup="dialog" aria-controls="portfolio-story" aria-label="모르는 일 앞에서 전체 이야기 읽기">이야기 이어 읽기 <span aria-hidden="true">↗</span></button></div></article>
-<article class="chapter-preview reveal"><span>03</span><div><h3>논에 물을 대던 시간</h3><p>퇴사 뒤에는 감정평가사 수험 준비를 이어갔습니다. 실무에서 부족하다고 느낀 금융과 건축을 공부해 투자자산운용사와 건축기사를 취득했습니다. 2025년 겨울부터는 아버지의 농사일에도 손을 보탰습니다.</p><button class="text-link" type="button" data-story-open data-story-target="story-field" aria-haspopup="dialog" aria-controls="portfolio-story" aria-label="논에 물을 대던 시간 전체 이야기 읽기">이야기 이어 읽기 <span aria-hidden="true">↗</span></button></div></article>
-<article class="chapter-preview reveal"><span>04</span><div><h3>제 일에 맞는 도구</h3><p>자료를 정리하고 문서를 쓰는 반복 업무에 맞춰 개인 작업환경을 구성했습니다. 필요한 기능을 정해 AI에 구현을 지시하고 결과를 확인합니다. 계획, 자료 정리, 작성, 검수의 역할을 나누어 앞 작업의 결과를 다음 역할에 넘깁니다.</p><button class="text-link" type="button" data-story-open data-story-target="story-tools" aria-haspopup="dialog" aria-controls="portfolio-story" aria-label="제 일에 맞는 도구 전체 이야기 읽기">이야기 이어 읽기 <span aria-hidden="true">↗</span></button></div></article></div>
-      <div class="tools-spread">
-        <figure class="reveal"><div class="photo-frame"><img src="assets/source-review.webp" alt="문서와 원자료를 다시 대조하는 가상의 작업 장면" width="1672" height="941" loading="lazy" decoding="async"></div><figcaption class="media-caption">AI로 재구성한 가상 장면입니다.</figcaption></figure>
-        <div class="tools-copy reveal"><h3>자료를 연결하고,<br>결과를 다시 확인합니다.</h3><p data-summary-key="ai">퇴사 후 Codex 기반 작업환경에 Claude를 연계해 개인 업무 도구를 구성했습니다.</p><p>현재 개인 자료 정리와 문서 작성·검토에 사용하고 있습니다. Gemini 등 다른 모델을 연계한 이미지·문서 처리는 성능과 업무 적합성을 검증한 뒤 확장할 계획입니다.</p><button class="text-link" type="button" data-detail-key="ai" aria-haspopup="dialog" aria-controls="panel">개인 작업환경과 활용 범위 <span aria-hidden="true">↗</span></button></div>
+      <div class="person-entries" aria-label="특징과 장점, 단점과 보완, 취미와 관심">
+        <details class="person-entry" name="person-entries" id="person-traits" open>
+          <summary><span class="person-label">특징 · 장점</span><span class="person-title-row"><span>무던함과 책임감</span><span class="brief-toggle" aria-hidden="true"></span></span><span class="person-summary">감정 기복이 크지 않고 함께하는 사람의 사정과 제가 맡은 몫을 살피는 편입니다.</span></summary>
+          <div class="person-body"><p>문제가 생기면 먼저 사실관계를 살피고 제가 할 수 있는 일을 정리합니다. 잘하는 일과 아직 익숙하지 않은 일을 구분해 말하고 실수를 알게 되면 인정하고 고치려고 합니다.</p><p>여행에서 만난 사람들과 일정을 정할 때도 상대가 낯선 사람을 경계하는 마음부터 이해하려 했습니다. 함께하는 일에서는 상대의 사정을 듣고 제가 맡은 역할을 끝까지 이어가려 합니다.</p></div>
+        </details>
+        <details class="person-entry" name="person-entries" id="person-growth">
+          <summary><span class="person-label">단점 · 보완</span><span class="person-title-row"><span>먼저 나서고 제 몫을 설명하는 연습</span><span class="brief-toggle" aria-hidden="true"></span></span><span class="person-summary">낯선 일을 먼저 맡겠다고 말하거나, 제가 한 일을 적극적으로 드러내는 데 주저한 적이 있습니다.</span></summary>
+          <div class="person-body"><p>스스로에 대한 평가가 엄격한 편이라 경험이 충분하지 않은 일에는 선뜻 나서지 못했습니다. 성과를 과장하지 않으려다 제가 기여한 부분이 충분히 전달되지 않은 적도 있습니다.</p><p>지금은 모르는 부분과 익히는 데 필요한 시간을 함께 밝힙니다. 제가 맡을 수 있는 범위를 먼저 제안하고 수행한 일은 근거와 함께 기록해 공유하려고 합니다.</p></div>
+        </details>
+        <details class="person-entry" name="person-entries" id="person-interests">
+          <summary><span class="person-label">취미 · 관심</span><span class="person-title-row"><span>배낭여행과 새로운 도구</span><span class="brief-toggle" aria-hidden="true"></span></span><span class="person-summary">코로나 이전에는 매년 아시아를 배낭여행했습니다. 요즘은 제 작업에 맞는 AI 도구를 구성하는 데 관심을 두고 있습니다.</span></summary>
+          <div class="person-body"><p>홀로 여행을 떠나 서로 다른 문화와 풍경을 직접 보고 겪었습니다. 새로운 여행지에서 만난 배낭여행객들과 일정을 나누고 이동과 숙박을 함께 정했습니다. 예상하지 못한 문제도 그때그때 같이 풀었습니다.</p><p>요즘은 개인 자료 정리와 문서 작성에 필요한 기능을 정해 AI에 구현을 맡기고 결과를 살펴봅니다. 계획과 자료 정리, 작성과 검수의 역할을 나누어 제가 쓰는 도구를 구성하고 있습니다.</p></div>
+        </details>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+<section class="section direction-section" id="direction" aria-labelledby="direction-title">
+  <div class="container">
+    <header class="section-heading"><div class="heading-group"><span class="flow-number">04</span><h2 id="direction-title">제가 일하는 방향</h2></div><p>여행, 실무와 배움, 농사, 자료와 도구.<br>네 이야기에서 일하는 방식을 전합니다.</p></header>
+    <div class="direction-workspace">
+      <div class="direction-media"><div class="film-frame"><video data-portfolio-film class="portfolio-video" id="direction-film" controls preload="none" playsinline width="1920" height="1080" poster="assets/story/introduction-continuous-story-poster.webp" src="assets/story/introduction-continuous-story.mp4" aria-label="저는 이런 사람입니다, 60.5초 무음 소개 영상"></video></div><div class="film-current-caption" data-film-caption-for="direction-film" aria-live="off" hidden><span class="film-current-label">현재 자막</span><p class="film-current-text"></p></div><p class="film-viewing-tip">영상 속 자막은 전체 화면에서 더 크게 볼 수 있습니다.</p><p class="film-meta"><span data-film-label>약 1분 소개 영상</span><span data-film-meta>60.5초 · 20컷 · 무음</span></p><p class="film-description" data-film-disclosure>AI로 재구성한 가상 인물과 장면입니다. 실제 인물이나 현장 기록이 아닙니다.</p><p class="story-video-error" id="direction-film-error" hidden>영상을 재생할 수 없습니다. <a data-film-download href="assets/story/introduction-continuous-story.mp4">영상 파일 열기</a></p></div>
+      <div class="story-navigator"><div class="story-choices" aria-label="읽고 싶은 이야기"><a class="story-choice" id="story-choice-1" href="#story-preview-1" data-story-select="1"><span class="choice-number">01</span><span>여행</span><span class="choice-arrow" aria-hidden="true">↗</span></a>
+<a class="story-choice" id="story-choice-2" href="#story-preview-2" data-story-select="2"><span class="choice-number">02</span><span>실무와 배움</span><span class="choice-arrow" aria-hidden="true">↗</span></a>
+<a class="story-choice" id="story-choice-3" href="#story-preview-3" data-story-select="3"><span class="choice-number">03</span><span>농사</span><span class="choice-arrow" aria-hidden="true">↗</span></a>
+<a class="story-choice" id="story-choice-4" href="#story-preview-4" data-story-select="4"><span class="choice-number">04</span><span>자료와 도구</span><span class="choice-arrow" aria-hidden="true">↗</span></a></div><div class="story-preview-panels"><div class="story-preview" id="story-preview-1" data-story-preview="1"><h3>혼자 떠나, 함께 정한 길</h3><p class="preview-deck">다음 일정은 함께 정했습니다.</p><p class="preview-body">코로나 이전에는 홀로 아시아를 배낭여행했습니다. 새 여행지에서 만난 배낭여행객들과 일정을 나누다 함께 다니기도 했습니다. 이동과 숙박을 같이 정하고 예상하지 못한 문제는 그때그때 풀었습니다.</p><button class="text-link" type="button" data-story-open data-story-target="story-journey" aria-haspopup="dialog" aria-controls="portfolio-story" aria-label="혼자 떠나, 함께 정한 길 이야기 전체 읽기">이야기 전체 읽기 <span aria-hidden="true">↗</span></button></div>
+<div class="story-preview" id="story-preview-2" data-story-preview="2"><h3>모르는 일 앞에서</h3><p class="preview-deck">확인할 내용과 기한을 먼저 알립니다.</p><p class="preview-body">부동산을 전공하고 민법·공법·경제학을 오래 공부했습니다. 그래도 실무에서는 처음부터 다시 확인할 일이 많았습니다. 재개발 사업의 비례율과 조합원 부담금을 검토할 때는 엑셀 계산 구조를 다시 세워 비용이 달라지면 부담금이 어떻게 바뀌는지 살폈습니다.</p><button class="text-link" type="button" data-story-open data-story-target="story-learning" aria-haspopup="dialog" aria-controls="portfolio-story" aria-label="모르는 일 앞에서 이야기 전체 읽기">이야기 전체 읽기 <span aria-hidden="true">↗</span></button></div>
+<div class="story-preview" id="story-preview-3" data-story-preview="3"><h3>논에 물을 대던 시간</h3><p class="preview-deck">가족의 일을 돕고 실무 복귀를 준비했습니다.</p><p class="preview-body">퇴사 뒤에는 감정평가사 수험 준비를 이어갔습니다. 실무에서 부족하다고 느낀 금융과 건축을 공부해 투자자산운용사와 건축기사를 취득했습니다. 2025년 겨울부터는 아버지의 농사일에도 손을 보탰습니다.</p><button class="text-link" type="button" data-story-open data-story-target="story-field" aria-haspopup="dialog" aria-controls="portfolio-story" aria-label="논에 물을 대던 시간 이야기 전체 읽기">이야기 전체 읽기 <span aria-hidden="true">↗</span></button></div>
+<div class="story-preview" id="story-preview-4" data-story-preview="4"><h3>제 일에 맞는 도구</h3><p class="preview-deck">자료를 연결하고 결과를 다시 확인합니다.</p><p class="preview-body">자료를 정리하고 문서를 쓰는 반복 업무에 맞춰 개인 작업환경을 구성했습니다. 필요한 기능을 정해 AI에 구현을 지시하고 결과를 확인합니다. 계획, 자료 정리, 작성, 검수의 역할을 나누어 앞 작업의 결과를 다음 역할에 넘깁니다.</p><button class="text-link" type="button" data-story-open data-story-target="story-tools" aria-haspopup="dialog" aria-controls="portfolio-story" aria-label="제 일에 맞는 도구 이야기 전체 읽기">이야기 전체 읽기 <span aria-hidden="true">↗</span></button></div></div></div>
+    </div>
+  </div>
+</section>
 </main>
 <section class="contact" id="contact" aria-labelledby="contact-title">
-  <div class="container">
-    <div class="contact-grid"><div><h2 id="contact-title">제가 만든 도구와<br>이어가는 기록</h2><p>개인 에이전트의 개발 기록은 GitHub에 공개하고 있습니다. 자료를 다루고 결과를 확인하는 방식을 함께 살펴보실 수 있습니다.</p></div><a class="button button-primary" href="https://github.com/lgh5446/oma-personal" target="_blank" rel="noopener noreferrer">GitHub 개발 기록 <span aria-hidden="true">↗</span></a></div>
-    <footer class="site-footer"><div><p>이건호 · Development Orbit</p><p>이미지·영상의 인물과 장면은 AI로 재구성한 가상의 표현입니다.</p></div><a href="#profile">처음으로 <span aria-hidden="true">↑</span></a></footer>
-  </div>
+  <div class="container"><div class="contact-grid"><div><h2 id="contact-title">이어가는 기록</h2><p>개인 에이전트의 개발 과정과 활용 방식을 GitHub에 기록합니다.</p></div><a class="button button-primary" href="https://github.com/lgh5446/oma-personal" target="_blank" rel="noopener noreferrer">GitHub 개발 기록 <span aria-hidden="true">↗</span></a></div><footer class="site-footer"><div><p>이건호 · Development Orbit</p><p>이미지·영상의 인물과 장면은 AI로 재구성한 가상의 표현입니다.</p></div><a href="#profile">처음으로 <span aria-hidden="true">↑</span></a></footer></div>
 </section>
 <noscript><div class="container no-script-note">주요 소개와 경력은 이 페이지에서 읽을 수 있습니다. 영역별 상세 창과 움직이는 궤도는 JavaScript를 켜면 이용할 수 있습니다.</div></noscript>
 <dialog class="panel" id="panel" aria-labelledby="pt" aria-describedby="ps">
@@ -151,7 +160,7 @@
         <p class="story-kicker">이건호 자기소개</p>
         <h2 id="story-title" tabindex="-1">제가 일하는 방향</h2>
         <p class="story-lead">낯선 길에서 만난 사람들, 실무에서 다시 펼친 책, 손을 보탠 논, 요즘 직접 만드는 도구. 지금의 저를 설명하는 네 장면입니다.</p>
-        <button class="story-film-link" type="button" data-story-play><span aria-hidden="true">▶</span> <span data-film-action>17초 소개 영상 보기</span></button>
+        <button class="story-film-link" type="button" data-story-play><span aria-hidden="true">▶</span> <span data-film-action>약 1분 소개 영상 보기</span></button>
         <p class="story-note">AI로 재구성한 가상 인물과 장면입니다.</p>
       </div>
       <figure class="story-cover-image">
@@ -223,19 +232,27 @@
 
     <section class="story-film" id="story-film" aria-labelledby="story-film-title">
       <header class="story-film-heading">
-        <p class="story-kicker" data-film-story-meta>17초 · 7컷 · 무음</p>
-        <h3 id="story-film-title" tabindex="-1">이야기의 분위기를 담은 짧은 영상</h3>
+        <p class="story-kicker" data-film-story-meta>60.5초 · 20컷 · 무음</p>
+        <h3 id="story-film-title" tabindex="-1">저는 이런 사람입니다 · 소개 영상</h3>
       </header>
-      <video data-portfolio-film class="story-video" controls preload="none" playsinline width="1280" height="720" poster="assets/story/introduction-seven-scenes-poster.webp" src="assets/story/introduction-seven-scenes.mp4" aria-label="제가 일하는 방향, 17초 무음 소개 영상"></video>
-      <p class="story-video-error" hidden>이 화면에서 영상을 재생할 수 없습니다. <a data-film-download href="assets/story/introduction-seven-scenes.mp4">영상 파일 열기</a></p>
+      <video data-portfolio-film class="story-video" id="story-film-video" controls preload="none" playsinline width="1920" height="1080" poster="assets/story/introduction-continuous-story-poster.webp" src="assets/story/introduction-continuous-story.mp4" aria-label="저는 이런 사람입니다, 60.5초 무음 소개 영상"></video>
+      <div class="film-current-caption" data-film-caption-for="story-film-video" aria-live="off" hidden><span class="film-current-label">현재 자막</span><p class="film-current-text"></p></div>
+      <p class="film-viewing-tip">영상 속 자막은 전체 화면에서 더 크게 볼 수 있습니다.</p>
+      <p class="story-video-error" hidden>이 화면에서 영상을 재생할 수 없습니다. <a data-film-download href="assets/story/introduction-continuous-story.mp4">영상 파일 열기</a></p>
       <details class="story-transcript">
-        <summary>영상과 함께 읽는 이야기</summary>
+        <summary>영상 자막 전체 읽기</summary>
         <ol>
-          <li>혼자 걷던 길에서도 다음 일정은 함께 정했습니다.</li>
-          <li>모르는 일은 기한을 정해 배우고 맡은 일과 제 역할을 기록합니다.</li>
-          <li>논에 물을 대고 일손을 도우며 실무로 돌아갈 준비도 이어갔습니다.</li>
-          <li>제 일에 맞는 도구를 구성하고 결과는 원자료와 다시 맞춰 봅니다.</li>
-          <li>모르는 일은 배워 맡고 확인한 것은 정확히 전합니다.</li>
+          <li>이건호<br>저는 이런 사람입니다</li>
+          <li>혼자 떠난 배낭여행에서</li>
+          <li>이동과 숙박을 함께 정했습니다.</li>
+          <li>저는 대체로 무던하고 상대의 사정을 먼저 들으려 합니다.</li>
+          <li>낯선 일에 먼저 나서거나, 제 기여를 설명할 때는 주저했습니다.</li>
+          <li>지금은 배울 내용과 기한을 먼저 말합니다.</li>
+          <li>공부를 이어가던 시간, 아버지의 농사일도 도왔습니다.</li>
+          <li>모내기와 농번기에 일손을 보태고 논에 물을 대는 일을 도왔습니다.</li>
+          <li>요즘은 AI 도구를 제 작업에 맞게 구성합니다.</li>
+          <li>제가 한 일은 근거와 함께 남기고 부족한 부분은 다시 살펴봅니다.</li>
+          <li>모르는 것은 배우고 맡은 일은 끝까지.</li>
         </ol>
       </details>
       <p class="story-note">AI로 재구성한 가상 인물과 장면입니다.</p>
